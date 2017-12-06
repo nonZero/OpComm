@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block extra-page-id %}
+	id="meeting-list"
+{% endblock %}
+
+{% block page_header %}
+    {% trans "Meetings" %}
+{% endblock %}
+
+{% block content %}
+
+    {% if object_list %}
+
+        <ul>
+            {% for object in object_list %}
+                <li>
+                    <a href="{{ object.get_absolute_url }}">
+                        {% if object.title %}
+                            {{object.title}} -
+                        {% endif %}
+                        {{ object.held_at }}
+                        {% if object.location %}
+                            , {{ object.location }}
+                        {% endif %} 
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+
+        <div>
+            {% trans "This community did not conduct any meeting yet." %}
+        </div>
+
+    {% endif %}
+
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

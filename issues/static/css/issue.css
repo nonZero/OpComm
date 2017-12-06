@@ -1,0 +1,49 @@
+.deleted .comment-inner{
+    /*opacity:0.5;*/
+	color: #dadae4;
+    text-decoration: line-through;
+}
+
+.undelete-btn, delete-btn {
+    float: left;
+}
+
+.undelete-btn{
+    display: none;
+}
+
+.deleted .undelete-btn{
+    display: inline;
+    opacity: 5;
+}
+
+.deleted .delete-btn, .deleted blockquote, .deleted .edit-comment,
+.editing .delete-btn, .editing .edit-comment, .cancel-edit-comment{
+    display: none;
+}
+
+.editing .cancel-edit-comment {
+    display: inline;
+}
+
+
+li[data-accepted="1"] img {
+    visibility: hidden;
+}
+
+#add-comment label {
+	display: none;
+    /*display: block;
+    background: #666;
+	padding: 5px;
+	color: #fff;*/
+}
+
+#add-comment textarea {
+    width: 100%;
+}
+
+.issue_attachments ul {
+    margin: 4px 0;
+    list-style-type: none;
+}

@@ -1,0 +1,25 @@
+# django
+Django==2.0
+
+# general libs
+pillow==4.3.0
+bleach==2.1.1
+
+#search
+Whoosh==2.7.4
+django-haystack==2.6.1
+
+# queue
+redis
+hiredis
+rq
+django-rq
+
+# dev stuff
+django-extensions==1.9.8
+django-nose==1.4.5
+django-taggit==0.22.1
+ipython
+#--allow-external python-graph-core
+#--allow-unverified python-graph-core
+#python-graph-core==1.8.2

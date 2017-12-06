@@ -1,0 +1,23 @@
+{% extends "dialog.html" %}
+{% load i18n %}
+
+{% block page_header %}
+    {% trans "Delete attachment" %}
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {% trans "Are you sure?" %}
+    </form>
+{% endblock %}
+{% block nofooter %}
+<div class="modal-footer">
+<div class="col-xs-5 col-xs-offset-1 col-sm-3 col-sm-offset-3">
+    <button type="button" class="btn btn-default btn-block" data-dismiss="modal">{% trans "No" %}</button>
+</div>
+<div class="col-xs-5 col-sm-3">
+    <button type="submit" class="btn btn-danger btn-block"><i class="fa fa-trash-o"></i> {% block btn_text %}{% trans "Yes" %}{% endblock %}</button>
+</div>
+</div>
+{% endblock %}

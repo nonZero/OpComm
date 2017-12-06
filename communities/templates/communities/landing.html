@@ -1,0 +1,421 @@
+{% load i18n static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% trans "DemOS - operating system for democracies" %}</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<base href="/">
+		<!-- CSS Files comes here -->
+		<link href="{% static 'landing/css/bootstrap.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'landing/css/style.css' %}" rel="stylesheet" media="screen">
+		{% if LANGUAGE_CODE == 'he' %}
+        <link href="{% static 'landing/css/style-rtl.css' %}" rel="stylesheet" media="screen">
+		{% endif %}
+        <link href="{% static 'landing/css/animate.css' %}" rel="stylesheet">
+		<link href="{% static 'landing/css/icons.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'landing/css/flexslider.css' %}" rel="stylesheet" media="screen">
+		<link href="{% static 'landing/css/responsive.css' %}" rel="stylesheet" media="screen">
+		<link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="{% static 'landing/fa/css/font-awesome.min.css' %}">
+		<!-- Modernizer and IE specyfic files -->
+		<script src="{% static 'landing/js/modernizr.custom.js' %}"></script>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+
+	</head>
+
+	<body>
+
+		<!--####################################################################-->
+		<!-- NAV ###############################################################-->
+		<!--####################################################################-->
+
+		<nav>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-lg-12">
+
+						<div id="logo">
+							<a href="#home">DemOS</a>
+						</div>
+
+						<div id="navigation" class="visible-md visible-lg">
+							<ul>
+								<span id="sections">
+									<li class="current">
+										<a href="#home">{% trans "top" %}</a>
+									</li>
+									<li>
+										<a href="#about">{% trans 'The Problem' %}</a>
+									</li>
+									<li>
+										<a href="#services">{% trans 'The Solution' %}</a>
+									</li>
+									<li>
+										<a href="#ourtool">{% trans 'Our Tool' %}</a>
+									</li>
+									<li>
+										<a href="#team">{% trans 'Our Team' %}</a>
+									</li> </span>
+								<li>
+									<a href="communities/" class="login-action btn-login">{% trans "Login" %}</a>
+								</li>
+							</ul>
+						</div>
+						<div id="navigation_mobile" class="visible-sm visible-xs">
+							<button class="button_nav" id="showLeft">
+								<span aria-hidden="true" class="button_nav_icon icon-list"></span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- //NAV -->
+
+		<!-- MOBILE NAV -->
+		<div class="cbp-spmenu visible-sm visible-xs" id="cbp-spmenu">
+			<h3>{% trans "Menu" %}</h3>
+			<ul>
+				<span id="sections_mobile">
+					<li class="current">
+						<a href="#home">{% trans "top" %}</a>
+					</li>
+					<li>
+						<a href="#about">{% trans "The Problem" %}</a>
+					</li>
+					<li>
+						<a href="#services">{% trans "The Solution" %}</a>
+					</li>
+					<li>
+						<a href="#ourtool">{% trans "Our Tool" %}</a>
+					</li>
+					<li>
+						<a href="#team">{% trans "Our Team" %}</a>
+					</li> </span>
+				<li>
+					<a href="communities/" class="btn-login">{% trans "Login" %}</a>
+				</li>
+			</ul>
+		</div>
+
+		<!--####################################################################-->
+		<!-- //MOBILE NAV ######################################################-->
+		<!--####################################################################-->
+
+		<!--####################################################################-->
+		<!-- HOME ##############################################################-->
+		<!--####################################################################-->
+
+		<section id="home">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-lg-12">
+						<blockquote>
+							<p class="first">
+								{% trans "An operating system for democracies" %}
+							</p>
+							<p>
+								{% trans "that strengthens communities by" %}
+							</p>
+						</blockquote>
+						<div class="tlt">
+							<ul class="texts">
+								<li>
+									{% trans "Engaging Crowds" %}
+								</li>
+								<li>
+									{% trans "Empowering Individuals" %}
+								</li>
+								<li>
+									{% trans "Decentralizing Democracy" %}
+								</li>
+								<li>
+									{% trans "Facilitating Leaders" %}
+								</li>
+								<li>
+									{% trans "Converging Discussions" %}
+								</li>
+							</ul>
+						</div>
+						<button id="btn-arrow" class="btn btn-arrow btn-arrowb icon-arrow">
+							<span>{% trans "Learn More" %}</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--####################################################################-->
+		<!-- //HOME ############################################################-->
+		<!--####################################################################-->
+
+		<!--####################################################################-->
+		<!-- ABOUT #############################################################-->
+		<!--####################################################################-->
+
+		<div id="aboutcontainer"></div>
+		<section id="about">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+						<h2>{% trans "What Went Wrong" %}?</h2>
+						<blockquote>
+							<p>
+								{% trans "In many communities democracy suffers from many ailments" %}.
+							</p>
+							<br/>
+							<p>
+								{% trans "The root cause of which is the" %} <strong>{% trans "alienation" %}</strong> {% trans "between the elected board and the public, where the public is" %} <strong>{% trans "excluded" %}</strong> {% trans "from the decision-making process and can only elect its governors and protest in between elections" %}.
+							</p>
+						</blockquote>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--####################################################################-->
+		<!-- //ABOUT ###########################################################-->
+		<!--####################################################################-->
+
+		<!--####################################################################-->
+		<!-- SERVICES ##########################################################-->
+		<!--####################################################################-->
+
+		<section id="services" data-speed="-5" data-type="background">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+						<div style="height:80px"></div>
+
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<!--####################################################################-->
+		<!-- //SERVICES ########################################################-->
+		<!--####################################################################-->
+
+		<!--####################################################################-->
+		<!-- PORTFOLIO #########################################################-->
+		<!--####################################################################-->
+
+		<section id="folio">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+						<h2>{% trans "The Solution" %}</h2>
+
+						<p style="font-size: 1.6em; line-height: 1.5em;">
+							<strong>{% trans "Participatory decision making in democratic communities" %}</strong>
+						</p>
+						<p style="font-size: 1.6em; line-height: 1.5em;">
+							{% trans "We aim to return democracy to its fundamental principle – public participation in the decision making process" %}.
+						</p>
+						<p style="font-size: 1.6em; line-height: 1.5em;">
+							{% trans "We develop an online platform that enables democratic communities, big and small, to increase transparency and levels of participation and increase their social capital" %}.
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<!--####################################################################-->
+		<!-- //PORTFOLIO #######################################################-->
+		<!--####################################################################-->
+		<!--####################################################################-->
+		<!-- ourtool ###########################################################-->
+		<!--####################################################################-->
+
+		<section id="ourtool" data-speed="-5" data-type="background">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+						<h2>{% trans "Our Tool" %}</h2>
+						<p>
+							{% trans "The complete platform will accompany the process of decision making as it progresses" %}:
+						</p>
+
+						<div class="row" id="tool_boxes">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 tool_box">
+								<ul>
+									<li>
+										<i class="fa fa-comments fa-2x"></i><span>{% trans "Converging Discussions" %}</span>
+									</li>
+									<li>
+										<i class="fa fa-list fa-2x"></i><span>{% trans "Agenda Setting" %}</span>
+									</li>
+									<li>
+										<i class="fa fa-bolt fa-2x"></i><span>{% trans "Solution suggestion" %}</span>
+									</li>
+									<li>
+										<i class="fa fa-thumbs-o-up fa-2x"></i><span>{% trans "Prioritization" %}</span>
+									</li>
+									<li>
+										<i class="fa fa-gavel fa-2x"></i><span>{% trans "Voting" %}</span>
+									</li>
+									<li>
+										<i class="fa fa-book fa-2x"></i><span>{% trans "Publication monitoring" %}</span>
+									</li>
+
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<!--####################################################################-->
+		<!-- //ourtool #########################################################-->
+		<!--####################################################################-->
+
+		<!--####################################################################-->
+		<!-- PORTFOLIO #########################################################-->
+		<!--####################################################################-->
+
+		<section id="process">
+			<h2>{% trans "The Proccess" %}</h2>
+			<div class="container">
+
+				<div class="row">
+
+					<div class="col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+						<p style="text-align:center;">
+							{% trans "The platform enables adjustments to the levels of exposure. The adjustments enable a gradual process according to the development and increase of trust between the board and the community" %}
+						</p>
+
+						<div class="arrow_box">
+							<h3>{% trans "Transparency" %}</h3>
+							<p>
+								{% trans "The board uses the platform to manage issues, meeting agenda and decisions, and keeps the community informed with no extra effort" %}
+							</p>
+						</div>
+
+						<div class="arrow_box">
+							<h3>{% trans "Consultation" %}</h3>
+							<p>
+								{% trans "Community members can participate in non-binding discussion, polls and voting to share their preference with the board" %}.
+							</p>
+						</div>
+
+						<div class="arrow_box">
+							<h3>{% trans "Collaboration" %}</h3>
+							<p>
+								{% trans "Community members raise issues (initiatives), introduce proposals, impact the agenda, and vote on proposals (referendum)" %}
+							</p>
+						</div>
+
+						<div class="arrow_box_last">
+							<h3>{% trans "Empowerment" %}</h3>
+							<p>
+								{% trans "The community is the true sovereign and has full power over decision making (as done by jury and public committees)" %}
+							</p>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<!--####################################################################-->
+		<!-- //PORTFOLIO #######################################################-->
+		<!--####################################################################-->
+
+		<!--####################################################################-->
+		<!-- Team ##############################################################-->
+		<!--####################################################################-->
+
+		<section id="team" data-speed="-5" data-type="background">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+						<div id="hasadna"><img src="{% static '' %}landing/images/sadna-logo.png" alt="Hasadna Logo" />{% trans "The project runs within the framework of the" %} <strong><a href="http://www.hasadna.org.il">{% trans "Public Knowledge Workshop" %}</a></strong> –
+							<br />
+							{% trans "a non-profit incubator for open code to promote democracy and citizen involvement in government activities" %}.
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<!--####################################################################-->
+		<!-- //Team ############################################################-->
+		<!--####################################################################-->
+
+		<!--####################################################################-->
+		<!-- Contact ###########################################################-->
+		<!--####################################################################-->
+
+		<!--####################################################################-->
+		<!-- //Contact #########################################################-->
+		<!--####################################################################-->
+
+		<!--####################################################################-->
+		<!-- FOOTER ############################################################-->
+		<!--####################################################################-->
+
+		<section id="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 col-md-12 col-lg-12">
+						<p>
+							2014 &#169; DemOS
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- JavaScript plugins comes here. -->
+		<script src="{% static 'landing/js/jquery-1.9.1.min.js' %}"></script>
+		<script src="{% static 'landing/js/jquery.easing.min.js' %}"></script>
+		<script src="{% static 'landing/js/classie.js' %}"></script>
+		<script src="{% static 'landing/js/jquery.scrollTo.js' %}"></script>
+		<script src="{% static 'landing/js/jquery.nav.js' %}"></script>
+		<script src="{% static 'landing/js/jquery.form.js' %}"></script>
+		<script src="{% static 'landing/js/waypoints.min.js' %}"></script>
+		<script src="{% static 'landing/js/parallax.js' %}"></script>
+		<script src="{% static 'landing/js/masonry.pkgd.min.js' %}"></script>
+		<script src="{% static 'landing/js/imagesloaded.js' %}"></script>
+		<script src="{% static 'landing/js/jquery.fittext.js' %}"></script>
+		<script src="{% static 'landing/js/jquery.lettering.js' %}"></script>
+		<script src="{% static 'landing/js/jquery.textillate.js' %}"></script>
+		<script src="{% static 'landing/js/AnimOnScroll.js' %}"></script>
+		<script>
+			new AnimOnScroll(document.getElementById('grid'), {
+				minDuration : 0.4,
+				maxDuration : 0.7,
+				viewportFactor : 0.2
+			});
+		</script>
+		<script src="{% static 'landing/js/cssParser.js' %}"></script>
+		<script src="{% static 'landing/js/modalEffects.js' %}"></script>
+		<script src="{% static 'landing/js/jquery.flexslider-min.js' %}"></script>
+		<script src="{% static 'landing/js/jquery.fitvids.js' %}"></script>
+		<script src="{% static 'landing/js/main.js' %}"></script>
+		<script src="{% static 'landing/js/retina.js' %}"></script>
+		<script>
+			$('#sections_mobile li a').on('click', function() {
+				classie.toggle(menuLeft, 'cbp-spmenu-open');
+			});
+		</script>
+	</body>
+</html>

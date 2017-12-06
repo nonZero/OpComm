@@ -1,0 +1,65 @@
+{% extends "dialog.html" %}
+{% load i18n %}
+
+{% block page_header %}
+    {% if object.upcoming_meeting_started %}
+      {% trans "Summary draft" %}
+    {% else %}
+      {% trans "Publish" %}
+    {% endif %}
+{% endblock %}
+
+{% block nofooter %}
+<div class="modal-footer">
+	<button type="button" class="btn btn-info hidden-print pull-left" data-toggle="collapse" data-target="#protocolPreview">
+		{% if object.upcoming_meeting_started %}
+			{% if LANGUAGE_CODE == 'he' and community.no_meetings_community %}
+            {% trans "Preview details" %}
+            {% else %}
+            {% trans "Preview protocol" %}
+            {% endif %}
+		{% else %}
+			{% trans "Preview draft" %}
+		{% endif %}
+	</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+    <input type="submit" class="btn btn-oc" value="{% trans "Publish" %}">
+	<div id="protocolPreview" class="collapse">
+		<button type="button" class="btn btn-default hidden-print protocol-print-btn" onclick="printProtocol();">
+  			<span class="glyphicon glyphicon-print"></span> 
+			{% if object.upcoming_meeting_started %}
+				{% if LANGUAGE_CODE == 'he' and community.no_meetings_community %}
+                {% trans "Print details" %}
+                {% else %}
+                {% trans "Print protocol" %}
+                {% endif %}
+			{% else %}
+				{% trans "Print draft" %}
+			{% endif %}
+		</button>
+		<div id="protocolPreviewContent"></div>
+	</div>
+</div>
+{% endblock %}
+
+{% block page_scripts %}
+{% if object.upcoming_meeting_started %}
+<script>
+	$.ajax({
+		url : "protocol-preview/",
+		success : function(result) {
+			$("#protocolPreviewContent").html(result);
+		}
+	});
+</script>
+{% else %}
+<script>
+	$.ajax({
+		url : "upcoming/publish/preview/",
+		success : function(result) {
+			$("#protocolPreviewContent").html(result);
+		}
+	}); 
+</script>
+{% endif %}
+{% endblock %}

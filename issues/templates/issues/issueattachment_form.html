@@ -1,0 +1,25 @@
+{% extends "dialog.html" %}
+{% load i18n %}
+
+{% block extra-page-id %}
+	id="add-attachment"
+{% endblock %}
+
+{% block page_header %}
+    {% trans "Add attachment" %}
+{% endblock %}
+
+{% block header-end %}
+{% endblock %}
+
+{% block content %}
+	{% csrf_token %}
+    {{ form }}
+
+{% endblock %}
+        {% block nofooter %}
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Cancel" %}</button>
+            <input type="submit" class="btn btn-oc" value="{% block btn_text %}{% trans "Attach" %}{% endblock %}">
+        </div>
+        {% endblock %}

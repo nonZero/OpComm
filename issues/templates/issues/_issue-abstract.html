@@ -1,0 +1,16 @@
+{% load i18n opencommunity %}
+
+<div id="issue-abstract" style="clear: both;">
+{% if object.abstract %}
+    <div class="issue-abstract filter-upcoming filter">
+        <a class="filter filter-subtitle" href="{{community.get_absolute_url}}">
+            {% if LANGUAGE_CODE == 'he' and community.no_meetings_community %}
+            {% trans "Next update" %}
+            {% else %}
+            {% trans "Upcoming meeting" %}
+            {% endif %}
+        </a>
+            {{object.abstract|default_if_none:""|userhtml}}
+    </div>
+{% endif %}
+</div>

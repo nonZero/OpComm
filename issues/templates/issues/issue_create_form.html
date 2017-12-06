@@ -1,0 +1,48 @@
+{% extends "dialog.html" %}
+{% load i18n %}
+
+{% block extra-page-id %}
+    id="issue-create"
+{% endblock %}
+
+{% block page_header %}
+    {% trans "New issue" %}
+{% endblock %}
+
+{% block form_name %}
+<div class="issue-form-bg"></div>
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    {{form}}
+    <h3>{% trans "New proposal" %}</h3>
+    <ul id="proposal-type" class="nav nav-tabs">
+		<li class="active"><a href="#">{% trans "None" %}</a></li>
+		<li><a href="#">{% trans "General" %}</a></li>
+		<li><a href="#">{% trans "Rule" %}</a></li>
+		<li><a href="#">{% trans "Task" %}</a></li>		
+	</ul>
+	<div id="proposal-section" style="background: #fff;margin: 0; padding: 5px 20px">
+    	{{form.new_proposal}}
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(function() {
+        $('#id_proposal-type').closest('.form-group').hide();
+        init_proposal_tabs(true);
+        $("ul#proposal-type li")[0].click()
+        var ac_url = '{% url "ac_user" community_id=community.id %}';
+        init_user_autocomplete(ac_url);
+        $("#id_proposal-content").css('height', '100px');
+        $('a.proposal-btn-confidential').parent().parent().css({
+			'margin-top': '-45px',
+			'margin-bottom': '0'
+		});
+    });
+</script>
+
+{% endblock %}
