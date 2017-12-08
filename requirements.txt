@@ -11,7 +11,7 @@ django-haystack==2.6.1
 
 # queue
 redis
-hiredis
+#hiredis
 rq
 django-rq
 

@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load url from future %}
 {% load i18n %}
 
 {% block extra-page-id %}
@@ -12,7 +11,7 @@
 
 {% block content %}
 
-    <form role="form" method="post" action="{% url 'ocd.views.login_user' %}">
+    <form role="form" method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <div class="form-group">
         {{ form }}

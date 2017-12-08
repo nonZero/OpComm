@@ -1,5 +1,5 @@
-from django.template.defaultfilters import linebreaksbr
 import bleach
+from django.template.defaultfilters import linebreaksbr
 from django.utils.html_parser import HTMLParser
 
 EXTRA_TAGS = [
@@ -10,7 +10,7 @@ EXTRA_TAGS = [
     'u',
 ]
 
-TAGS = bleach.ALLOWED_TAGS + EXTRA_TAGS
+TAGS = bleach.sanitizer.ALLOWED_TAGS + EXTRA_TAGS
 
 BLOCK_TAGS = [
     'p',
