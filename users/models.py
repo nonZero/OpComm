@@ -83,7 +83,7 @@ class OCUser(AbstractBaseUser, PermissionsMixin):
         verbose_name = _('user')
         verbose_name_plural = _('users')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.display_name
 
     def get_full_name(self):
@@ -141,7 +141,7 @@ class Membership(models.Model):
         verbose_name = _("Community Member")
         verbose_name_plural = _("Community Members")
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s: %s (%s)" % (self.community.name, self.user.display_name,
                                 self.get_default_group_name_display())
 
@@ -294,7 +294,7 @@ class Invitation(models.Model):
     DEFAULT_MESSAGE = _("The system will allow you to take part in the decision making process of %s. "
                         "Once you've joined, you'll be able to see the topics for the agenda in the upcoming meeting, decisions at previous meetings, and in the near future you'll be able to discuss and influence them.")
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s: %s (%s)" % (self.community.name, self.email,
                                 self.get_default_group_name_display())
 

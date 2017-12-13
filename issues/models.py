@@ -106,7 +106,7 @@ class Issue(UIDMixin, ConfidentialMixin):
         verbose_name_plural = _("Issues")
         ordering = ['order_in_upcoming_meeting', 'title']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     @models.permalink
@@ -399,7 +399,7 @@ class ProposalVoteBoard(models.Model):
         verbose_name = _("Proposal Vote")
         verbose_name_plural = _("Proposal Votes")
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s - %s" % (self.proposal.issue.title, self.user.display_name)
 
 
@@ -472,7 +472,7 @@ class Proposal(UIDMixin, ConfidentialMixin):
         verbose_name = _("Proposal")
         verbose_name_plural = _("Proposals")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     @property
@@ -674,7 +674,7 @@ class ProposalVote(models.Model):
         verbose_name = _("Proposal Vote")
         verbose_name_plural = _("Proposal Votes")
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s | %s - %s (%s)" % (
             self.proposal.issue.title, self.proposal.title, self.user.display_name, self.get_value_display())
 
@@ -692,7 +692,7 @@ class ProposalVoteArgument(models.Model):
         verbose_name = _("Proposal vote argument")
         verbose_name_plural = _("Proposal vote arguments")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.argument
 
     @models.permalink

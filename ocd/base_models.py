@@ -33,7 +33,7 @@ def create_uid(length=UID_LENGTH):
     """
     Creates a random code of lowercase letters and numbers
     """
-    return "".join(random.choice(UID_CHARS) for _x in xrange(length))
+    return "".join(random.choice(UID_CHARS) for _x in range(length))
 
 
 class UIDManager(models.Manager):

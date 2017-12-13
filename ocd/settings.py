@@ -176,9 +176,9 @@ LOGGING = {
     }
 }
 
-LOGIN_REDIRECT_URL = "/communities/"
-LOGIN_URL = "/login/"
-LOGOUT_URL = "/logout/"
+LOGIN_REDIRECT_URL = "home"
+LOGIN_URL = "login"
+LOGOUT_URL = "logout"
 
 FORMAT_MODULE_PATH = "ocd.formats"
 DATE_FORMAT_OCSHORTDATE = "j.n"
@@ -189,7 +189,7 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 SESSION_REMEMBER_DAYS = 45
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 REDIS = {
     'default': {

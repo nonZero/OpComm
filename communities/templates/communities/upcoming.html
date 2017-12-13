@@ -1,6 +1,5 @@
 {% extends "communities/base_meeting.html" %}
-{% load i18n %}
-{% load opencommunity community_tags %}
+{% load i18n static opencommunity community_tags %}
 
 {% block title %}
     <title>
@@ -269,7 +268,6 @@
 {% endblock %}
 
 {% block additional_scripts %}
-<script src="{% url 'jsi18n' %}"></script>
 <script>
 
     var Save = '{% trans "Save" %}';

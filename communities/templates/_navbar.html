@@ -12,9 +12,11 @@
 			{% endif %} </span>
 	</div>
 	<div class="navbar-collapse collapse oc-panel">
-		<ul class="nav navbar-nav">
+		{% comment %}
+        <ul class="nav navbar-nav">
 			{% include '_community_panel.html' %}
 		</ul>
+		{% endcomment %}
 		{% if community.id %}
 		<form class="navbar-form navbar-left search_lg" role="search" method="get" action="{% url 'community_search' community.id %}">
 			<div class="form-group">

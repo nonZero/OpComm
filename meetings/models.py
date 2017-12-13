@@ -31,7 +31,7 @@ class AgendaItem(ConfidentialByRelationMixin):
         verbose_name_plural = _("Agenda Items")
         ordering = ('meeting__created_at', 'order')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.issue.title
 
     #     def natural_key(self):
@@ -96,7 +96,7 @@ class Meeting(UIDMixin):
         verbose_name_plural = _("Meetings")
         ordering = ("-held_at",)
 
-    def __unicode__(self):
+    def __str__(self):
         s = date_format(self.held_at)
         if self.title:
             s += " - " + self.title
@@ -184,7 +184,7 @@ class MeetingParticipant(models.Model):
         verbose_name_plural = _("Meeting Participants")
         unique_together = (('meeting', 'ordinal'), ('meeting', 'user'))
 
-    def __unicode__(self):
+    def __str__(self):
         return self.user.display_name
 
 
@@ -201,7 +201,7 @@ class MeetingExternalParticipant(models.Model):
         verbose_name = _("Meeting External Participant")
         verbose_name_plural = _("Meeting External Participants")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 #     def natural_key(self):
