@@ -134,8 +134,7 @@ class IssueDetailView(IssueMixin, DetailView):
                 status=IssueStatus.ARCHIVED).order_by('-created_at')
         o = self.get_object()
         group = self.request.user.get_default_group(o.community) \
-            if self.request.user.is_authenticated() \
-            else ''
+            if self.request.user.is_authenticated else ''
 
         if group == DefaultGroups.BOARD or \
                 group == DefaultGroups.SECRETARY:

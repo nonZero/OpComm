@@ -404,15 +404,20 @@ class ProposalVoteBoard(models.Model):
 
 
 class ProposalType(object):
-    TASK = 1
-    RULE = 2
-    ADMIN = 3
+    GENERAL = 1
 
     CHOICES = (
-        (TASK, ugettext("Task")),
-        (RULE, ugettext("Rule")),
-        (ADMIN, ugettext("General")),
+        (GENERAL, ugettext("General")),
     )
+    # TASK = 1
+    # RULE = 2
+    # ADMIN = 3
+    #
+    # CHOICES = (
+    #     (TASK, ugettext("Task")),
+    #     (RULE, ugettext("Rule")),
+    #     (ADMIN, ugettext("General")),
+    # )
 
 
 class ProposalStatus(object):
@@ -437,8 +442,7 @@ class Proposal(UIDMixin, ConfidentialMixin):
                                    related_name="proposals_created",
                                    on_delete=models.PROTECT,
                                    verbose_name=_("Created by"))
-    type = models.PositiveIntegerField(_("Type"),
-                                       choices=ProposalType.CHOICES)
+    type = models.PositiveIntegerField(_("Type"), choices=ProposalType.CHOICES, default=ProposalType.GENERAL)
     types = ProposalType
 
     title = models.CharField(_("Title"), max_length=300)

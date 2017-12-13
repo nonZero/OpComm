@@ -24,23 +24,26 @@ class CreateIssueForm(forms.ModelForm):
         super(CreateIssueForm, self).__init__(*args, **kwargs)
         self.new_proposal = CreateProposalBaseForm(community=community,
                                                    prefix='proposal', data=self.data if self.is_bound else None)
-        self.new_proposal.fields['type'].required = False
+        # self.new_proposal.fields['type'].required = False
         # self.new_proposal.fields['type'].widget.attrs['class'] = 'form-control'
         # self.fields['confidential_reason'].empty_label = _('Not Confidential')
         # self.fields['confidential_reason'].queryset = community.confidential_reasons.all().order_by('id')
 
     def is_valid(self):
         valid = super(CreateIssueForm, self).is_valid()
-        if self.data.get('proposal-type') == '':
-            return valid
+        # if self.data.get('proposal-type') == '':
+        #     return valid
         return self.new_proposal.is_valid() and valid
 
     def save(self, commit=True):
         o = super(CreateIssueForm, self).save(commit)
-        if self.data.get('proposal-type') != '':
-            self.new_proposal.instance.issue = o
-            self.new_proposal.instance.created_by = o.created_by
-            self.new_proposal.save()
+        self.new_proposal.instance.issue = o
+        self.new_proposal.instance.created_by = o.created_by
+        self.new_proposal.save()
+        # if self.data.get('proposal-type') != '':
+        #     self.new_proposal.instance.issue = o
+        #     self.new_proposal.instance.created_by = o.created_by
+        #     self.new_proposal.save()
         return o
 
 
@@ -114,22 +117,22 @@ class CreateProposalBaseForm(forms.ModelForm):
 
         fields = [
             # 'confidential_reason',
-            'type',
+            # 'type',
             'title',
             'content',
-            'tags',
-            'assigned_to_user',
-            'assigned_to',
-            'due_by'
+            # 'tags',
+            # 'assigned_to_user',
+            # 'assigned_to',
+            # 'due_by'
         ]
 
         widgets = {
-            'type': OCSelect(attrs={'class': 'form-control'}),
+            # 'type': OCSelect(attrs={'class': 'form-control'}),
             'title': OCTextInput,
             'content': HTMLArea,
-            'assigned_to_user': forms.HiddenInput(),
-            'assigned_to': OCTextInput,
-            'due_by': forms.DateInput,
+            # 'assigned_to_user': forms.HiddenInput(),
+            # 'assigned_to': OCTextInput,
+            # 'due_by': forms.DateInput,
             # 'confidential_reason': OCProposalRadioButtons
         }
 
@@ -145,7 +148,7 @@ class CreateProposalForm(CreateProposalBaseForm):
 
     def __init__(self, *args, **kwargs):
         super(CreateProposalForm, self).__init__(*args, **kwargs)
-        self.fields['type'].initial = ProposalType.ADMIN
+        # self.fields['type'].initial = ProposalType.ADMIN
 
 
 class EditProposalForm(CreateProposalForm):
@@ -153,7 +156,7 @@ class EditProposalForm(CreateProposalForm):
 
     def __init__(self, *args, **kwargs):
         super(EditProposalForm, self).__init__(*args, **kwargs)
-        self.fields['type'].initial = self.instance.type
+        # self.fields['type'].initial = self.instance.type
 
 
 class EditProposalTaskForm(EditProposalForm):
