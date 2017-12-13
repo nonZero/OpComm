@@ -3,7 +3,7 @@ from django import forms
 from communities.models import Community, SendToOption
 from datetime import datetime, date, time
 from django.utils.translation import ugettext_lazy as _
-from ocd.formfields import HTMLArea, OCSplitDateTime, OCCheckboxSelectMultiple
+from ocd.formfields import HTMLArea, OCSplitDateTime, OCCheckboxSelectMultiple, OCTextInput
 from haystack.forms import ModelSearchForm
 
 
@@ -11,28 +11,28 @@ class EditUpcomingMeetingForm(forms.ModelForm):
     class Meta:
         model = Community
 
-        fields = (
+        fields = [
             'upcoming_meeting_title',
             'upcoming_meeting_location',
             'upcoming_meeting_scheduled_at',
             # 'voting_ends_at',
             'upcoming_meeting_comments',
-        )
+        ]
+
+        labels = {
+            'upcoming_meeting_title': _('Title'),
+            'upcoming_meeting_scheduled_at': _('Scheduled at'),
+            'upcoming_meeting_location': _('Location'),
+            'upcoming_meeting_comments': _('Background'),
+        }
 
         widgets = {
-            'upcoming_meeting_title': forms.TextInput,
+            'upcoming_meeting_title': OCTextInput,
             'upcoming_meeting_scheduled_at': OCSplitDateTime,
-            'upcoming_meeting_location': forms.TextInput,
+            'upcoming_meeting_location': OCTextInput,
             # 'voting_ends_at': OCSplitDateTime,
             'upcoming_meeting_comments': HTMLArea,
         }
-
-    def __init__(self, *args, **kwargs):
-        super(EditUpcomingMeetingForm, self).__init__(*args, **kwargs)
-        self.fields['upcoming_meeting_title'].label = _('Title')
-        self.fields['upcoming_meeting_scheduled_at'].label = _('Scheduled at')
-        self.fields['upcoming_meeting_location'].label = _('Location')
-        self.fields['upcoming_meeting_comments'].label = _('Background')
 
     """
     removed this function as we don't include voting_end_time in the form any more.

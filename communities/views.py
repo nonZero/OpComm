@@ -163,10 +163,10 @@ class EditUpcomingMeetingView(AjaxFormView, CommunityModelMixin, UpdateView):
     form_class = EditUpcomingMeetingForm
     template_name = "communities/upcoming_form.html"
 
-    def get_form(self, form_class):
-        form = super(EditUpcomingMeetingView, self).get_form(form_class)
-        c = self.get_object()
-        return form
+    # def get_form(self, form_class):
+    #     form = super(EditUpcomingMeetingView, self).get_form(form_class)
+    #     c = self.get_object()
+    #     return form
 
 
 class EditUpcomingMeetingParticipantsView(AjaxFormView, CommunityModelMixin, UpdateView):

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
-from django.http.response import HttpResponse, HttpResponseBadRequest, Http404, HttpResponseRedirect
+from django.http.response import HttpResponse, HttpResponseBadRequest, Http404, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
@@ -23,6 +23,43 @@ from users.forms import InvitationForm, QuickSignupForm, ImportInvitationsForm
 from users.models import Invitation, OCUser, Membership
 import json
 
+
+def cmp_to_key(mycmp):
+    'Convert a cmp= function into a key= function'
+
+    class K:
+        def __init__(self, obj, *args):
+            self.obj = obj
+
+        def __lt__(self, other):
+            return mycmp(self.obj, other.obj) < 0
+
+        def __gt__(self, other):
+            return mycmp(self.obj, other.obj) > 0
+
+        def __eq__(self, other):
+            return mycmp(self.obj, other.obj) == 0
+
+        def __le__(self, other):
+            return mycmp(self.obj, other.obj) <= 0
+
+        def __ge__(self, other):
+            return mycmp(self.obj, other.obj) >= 0
+
+        def __ne__(self, other):
+            return mycmp(self.obj, other.obj) != 0
+
+    return K
+
+
+def _cmp_func(a, b):
+    res = ((a['board'] > b['board']) - (a['board'] < b['board'])) * -1
+    if res == 0:
+        return (a['board'] > b['board']) - (a['board'] < b['board'])
+    else:
+        return res
+
+cmp_func = cmp_to_key(_cmp_func)
 
 class MembershipMixin(CommunityMixin):
     model = models.Membership
@@ -189,26 +226,18 @@ class AutocompleteMemberName(MembershipMixin, ListView):
 
     def get(self, request, *args, **kwargs):
 
-        def _cmp_func(a, b):
-            res = cmp(a['board'], b['board']) * -1
-            if res == 0:
-                return cmp(a['value'], b['value'])
-            else:
-                return res
-
         members = self.get_queryset()
         if not members:
-            return HttpResponse(json.dumps({}))
+            return JsonResponse({})
         else:
-            members = list(members.values('user__display_name', 'user__id',
-                                          'default_group_name'))
+            members = list(members.values('user__display_name', 'user__id', 'default_group_name'))
             for m in members:
                 m['tokens'] = [m['user__display_name'], ]
                 m['value'] = m['user__display_name']
                 m['board'] = m['default_group_name'] != 'member'
-            members.sort(_cmp_func)
+            members.sort(key=cmp_func)
             context = self.get_context_data(object_list=members)
-            return HttpResponse(json.dumps(members), {'content_type': 'application/json'})
+            return JsonResponse(members, safe=False)
 
 
 class MemberProfile(MembershipMixin, DetailView):

@@ -102,6 +102,6 @@ class AjaxFormView(object):
     def form_invalid(self, form):
         """ returns an 403 http response with form, including errors, as
         text/html """
-        resp = super(AjaxFormView, self).form_invalid(form)
+        resp = super().form_invalid(form)
         resp.status_code = 403
         return resp

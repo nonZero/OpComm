@@ -17,7 +17,7 @@
 
             <div class="modal-body">
                 {% block content %}
-                {{form}}
+                {% include 'ocforms/_base_form.html' %}
                 {% endblock %}
             </div>
             {% block nofooter %}

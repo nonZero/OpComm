@@ -1,14 +1,14 @@
 from django import forms
-from django.utils.safestring import mark_safe
 
 
 class HTMLArea(forms.Textarea):
     template_name = 'floppyforms/htmlarea.html'
 
-    def get_context(self, name, value, attrs):
-        ctx = super(HTMLArea, self).get_context(name, value, attrs)
-        ctx['attrs']['rows'] = 4
-        return ctx
+    def __init__(self, attrs=None):
+        default_attrs = {'cols': '40', 'rows': '4'}
+        if attrs:
+            default_attrs.update(attrs)
+        super().__init__(default_attrs)
 
 
 class DateTimeLocalInput(forms.DateTimeInput):
@@ -16,9 +16,7 @@ class DateTimeLocalInput(forms.DateTimeInput):
 
 
 class OCSplitDateTime(forms.SplitDateTimeWidget):
-    def render(self, name, value, attrs=None):
-        html = super(OCSplitDateTime, self).render(name, value, attrs=attrs)
-        return mark_safe("<span class=\"oc-dt-split\">%s</span>" % html)
+    template_name = 'ocforms/widgets/splitdatetime.html'
 
 
 class OCCheckboxSelectMultiple(forms.SelectMultiple):
@@ -31,3 +29,25 @@ class OCIssueRadioButtons(forms.RadioSelect):
 
 class OCProposalRadioButtons(forms.RadioSelect):
     template_name = 'floppyforms/oc_proposal_radio_buttons.html'
+
+
+class OCTextInput(forms.TextInput):
+    template_name = 'ocforms/widgets/text.html'
+
+    def __init__(self, attrs=None):
+        default_attrs = {'class': 'form-control'}
+        if attrs:
+            default_attrs.update(attrs)
+        super().__init__(default_attrs)
+
+
+class OCDateInput(forms.DateInput):
+    template_name = 'ocforms/widgets/date.html'
+
+
+class OCTimeInput(forms.TimeInput):
+    template_name = 'ocforms/widgets/time.html'
+
+
+class OCSelect(forms.Select):
+    template_name = 'ocforms/widgets/select.html'
