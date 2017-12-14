@@ -97,7 +97,7 @@ class UpcomingMeetingView(CommunityModelMixin, DetailView):
             add_to_meeting = request.POST['set'] == "0"
             issue.status = IssueStatus.IN_UPCOMING_MEETING if add_to_meeting \
                 else IssueStatus.OPEN
-            last = self.get_object().upcoming_issues(user=self.request.user).aggregate(
+            last = self.get_object().upcoming_issues(user=self.request.user, community=self.community).aggregate(
                 last=Max('order_in_upcoming_meeting'))['last']
             issue.order_in_upcoming_meeting = (last or 0) + 1
             issue.save()
@@ -107,7 +107,7 @@ class UpcomingMeetingView(CommunityModelMixin, DetailView):
 
         if 'issues[]' in request.POST:
             issues = [int(x) for x in request.POST.getlist('issues[]')]
-            qs = self.get_object().upcoming_issues(user=self.request.user)
+            qs = self.get_object().upcoming_issues(user=self.request.user, community=self.community)
             for i, iid in enumerate(issues):
                 qs.filter(id=iid).update(order_in_upcoming_meeting=i)
 
@@ -129,9 +129,9 @@ class UpcomingMeetingView(CommunityModelMixin, DetailView):
         d['sorted'] = json.dumps(sorted_issues)
 
         d['upcoming_issues'] = self.object.upcoming_issues(
-            user=self.request.user)
+            user=self.request.user, community=self.community)
         d['available_issues'] = self.object.available_issues(
-            user=self.request.user)
+            user=self.request.user, community=self.community)
         d['has_straw_votes'] = self.object.has_straw_votes(
             user=self.request.user, community=self.community)
         return d
@@ -146,7 +146,7 @@ class PublishUpcomingMeetingPreviewView(CommunityModelMixin, DetailView):
         d['can_straw_vote'] = self.community.upcoming_proposals_any(
             {'is_open': True}, user=self.request.user, community=self.community) \
                               and self.community.upcoming_meeting_is_published
-        upcoming_issues = self.community.upcoming_issues(user=self.request.user)
+        upcoming_issues = self.community.upcoming_issues(user=self.request.user, community=self.community)
         d['issue_container'] = []
         for i in upcoming_issues:
             proposals = i.proposals.object_access_control(
@@ -197,8 +197,8 @@ class PublishUpcomingView(AjaxFormView, CommunityModelMixin, UpdateView):
     form_class = PublishUpcomingMeetingForm
     template_name = "communities/publish_upcoming.html"
 
-    def get_form(self, form_class):
-        form = super(PublishUpcomingView, self).get_form(form_class)
+    def get_form(self):
+        form = super(PublishUpcomingView, self).get_form(self.form_class)
         c = self.get_object()
         if not c.upcoming_meeting_started:
             form.fields['send_to'].choices = SendToOption.publish_choices

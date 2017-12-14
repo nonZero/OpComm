@@ -68,6 +68,7 @@ class OCUser(AbstractBaseUser, PermissionsMixin):
                               db_index=True,
                               )
     display_name = models.CharField(_("Your name"), max_length=200)
+    opt_in = models.BooleanField(_('Allow emails?'), default=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(_('staff status'), default=False,
                                    help_text=_('Designates whether the user can log into this admin '
@@ -109,11 +110,11 @@ class OCUser(AbstractBaseUser, PermissionsMixin):
 
 class MembershipManager(models.Manager):
     def board(self):
-        return self.get_query_set().exclude(
+        return self.get_queryset().exclude(
             default_group_name=DefaultGroups.MEMBER)
 
     def none_board(self):
-        return self.get_query_set().filter(
+        return self.get_queryset().filter(
             default_group_name=DefaultGroups.MEMBER)
 
 

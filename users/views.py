@@ -180,7 +180,7 @@ class AcceptInvitationView(DetailView):
             i.delete()
             return m
 
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             if 'join' in request.POST:
                 m = create_membership(request.user)
                 return redirect(m.community.get_absolute_url())

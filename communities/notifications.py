@@ -11,7 +11,6 @@ from communities.models import SendToOption
 from users.default_roles import DefaultGroups
 from issues.models import IssueStatus
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -23,7 +22,7 @@ def get_guests_emails(guests_text):
                 from_idx = line.find('[')
                 to_idx = line.find(']', from_idx + 1)
                 try:
-                    guest_emails.append(line[from_idx+1:to_idx])
+                    guest_emails.append(line[from_idx + 1:to_idx])
                 except:
                     pass
     return guest_emails
@@ -73,13 +72,13 @@ def _base_send_mail(community, notification_type, sender, send_to, data=None,
         r = [sender]
 
     elif send_to == SendToOption.ALL_MEMBERS:
-        r = [m.user for m in community.memberships.all()]
+        r = [m.user for m in community.memberships.all() if m.user.opt_in]
 
     elif send_to == SendToOption.BOARD_ONLY:
-        r = [m.user for m in community.memberships.board()]
+        r = [m.user for m in community.memberships.board() if m.user.opt_in]
 
     elif send_to == SendToOption.ONLY_ATTENDEES:
-        r = [user for user in community.upcoming_meeting_participants.all()]
+        r = [user for user in community.upcoming_meeting_participants.all() if m.user.opt_in]
 
     else:
         r = []
@@ -101,7 +100,7 @@ def _base_send_mail(community, notification_type, sender, send_to, data=None,
 
         # Add system managers to the watcher_recipients list if applicable
         if community.inform_system_manager and \
-           notification_type in ('agenda', 'protocol', 'protocol_draft'):
+                notification_type in ('agenda', 'protocol', 'protocol_draft'):
             manager_emails = [manager[1] for manager in settings.MANAGERS]
             managers = construct_mock_users(manager_emails, 'managers')
             w.extend(managers)
@@ -111,7 +110,7 @@ def _base_send_mail(community, notification_type, sender, send_to, data=None,
             # pending invites to board only
             if send_to == SendToOption.BOARD_ONLY:
                 invitees = [i for i in community.invitations.exclude(
-                            default_group_name=DefaultGroups.MEMBER)]
+                    default_group_name=DefaultGroups.MEMBER)]
 
             # All pending invites
             elif send_to == SendToOption.ALL_MEMBERS:
@@ -154,9 +153,9 @@ def _base_send_mail(community, notification_type, sender, send_to, data=None,
             draft_agenda_payload = []
             issue_status = IssueStatus.IS_UPCOMING
             issues = community.issues.object_access_control(
-                    user=recipient, community=community).filter(
-                    active=True, status__in=(issue_status)).order_by(
-                    'order_in_upcoming_meeting')
+                user=recipient, community=community).filter(
+                active=True, status__in=(issue_status)).order_by(
+                'order_in_upcoming_meeting')
 
             for issue in issues:
                 proposals = issue.proposals.object_access_control(
@@ -196,9 +195,9 @@ def _base_send_mail(community, notification_type, sender, send_to, data=None,
         elif notification_type == 'agenda':
 
             can_straw_vote = community.upcoming_proposals_any(
-                 {'is_open': True}, user=recipient, community=community)\
-            and community.upcoming_meeting_is_published
-            upcoming_issues = community.upcoming_issues(user=recipient)
+                {'is_open': True}, user=recipient, community=community) \
+                             and community.upcoming_meeting_is_published
+            upcoming_issues = community.upcoming_issues(user=recipient, community=community)
             issues = []
 
             for i in upcoming_issues:
@@ -212,15 +211,17 @@ def _base_send_mail(community, notification_type, sender, send_to, data=None,
                 'issue_container': issues
             })
 
-        msg = {}
-        msg['subject'] = render_to_string("emails/{0}_title.txt".format(
-            notification_type), d).strip()
-        msg['body'] = render_to_string("emails/{0}.txt".format(notification_type), d)
         as_html = render_to_string("emails/{0}.html".format(
             notification_type), d)
-        msg['from_email'] = from_email
-        msg['to'] = [recipient.email]
-        msg = dict((k, v) for k, v in msg.iteritems() if v)
+
+        msg = {
+            'subject': render_to_string("emails/{0}_title.txt".format(notification_type), d).strip(),
+            'body': render_to_string("emails/{0}.txt".format(notification_type), d),
+            'from_email': from_email,
+            'to': [recipient.email],
+        }
+
+        msg = dict((k, v) for k, v in msg.items() if v)
         message = EmailMultiAlternatives(**msg)
         message.attach_alternative(as_html, 'text/html')
         message.send()

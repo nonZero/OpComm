@@ -13,7 +13,7 @@ class CommunityConfidentialReasonInline(TabularInline):
 class CommunityMembershipInline(TabularInline):
     model = Membership
     fk_name = 'community'
-    extra = 1
+    extra = 0
 
 
 class CommunityAdmin(ModelAdmin):

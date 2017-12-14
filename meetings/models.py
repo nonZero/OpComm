@@ -160,7 +160,7 @@ class Meeting(UIDMixin):
 
 class BoardParticipantsManager(models.Manager):
     def board(self):
-        return self.get_query_set().exclude(
+        return self.get_queryset().exclude(
             default_group_name=DefaultGroups.MEMBER,
             is_absent=True)
 

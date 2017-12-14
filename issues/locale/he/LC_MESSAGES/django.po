@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Open Community\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-13 20:38+0200\n"
-"PO-Revision-Date: 2017-12-13 20:38+0200\n"
+"PO-Revision-Date: 2017-12-14 09:18+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -529,7 +529,7 @@ msgstr "באיחור"
 #: templates/issues/issueattachment_confirm_delete.html:11
 #: templates/issues/proposal_confirm_delete.html:12
 msgid "Are you sure?"
-msgstr "האם אתה בטוח?תאריך קביעת נוהל"
+msgstr "האם אתה בטוח?"
 
 #: templates/issues/issue_confirm_delete.html:18
 #: templates/issues/issueattachment_confirm_delete.html:17

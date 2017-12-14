@@ -36,12 +36,12 @@ class ProposalQuerySetMixin(ActiveQuerySetMixin):
 
 
 class ProposalQuerySet(QuerySet, ProposalQuerySetMixin):
-    """Queryset used by the Porposal Manager."""
+    """Queryset used by the Proposal Manager."""
 
 
 class ProposalManager(models.Manager, ConfidentialQuerySetMixin,
                       ProposalQuerySetMixin):
-    def get_query_set(self):
+    def get_queryset(self):
         return ProposalQuerySet(self.model, using=self._db)
 
 
@@ -196,8 +196,7 @@ class Issue(UIDMixin, ConfidentialMixin):
 class IssueComment(UIDMixin):
     issue = models.ForeignKey(Issue, related_name="comments", on_delete=models.PROTECT)
     active = models.BooleanField(default=True)
-    ordinal = models.PositiveIntegerField(null=True,
-                                          blank=True)  # TODO: remove me
+    ordinal = models.PositiveIntegerField(null=True, blank=True)  # TODO: remove me
     created_at = models.DateTimeField(_("Created at"), auto_now_add=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                    verbose_name=_("Created by"),
@@ -207,8 +206,7 @@ class IssueComment(UIDMixin):
     meeting = models.ForeignKey('meetings.Meeting', null=True, blank=True, on_delete=models.PROTECT)
 
     version = models.PositiveIntegerField(default=1)
-    last_edited_at = models.DateTimeField(_("Last Edited at"),
-                                          auto_now_add=True)
+    last_edited_at = models.DateTimeField(_("Last Edited at"), auto_now_add=True)
     last_edited_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, verbose_name=_("Created by"),
         on_delete=models.PROTECT,
@@ -239,7 +237,7 @@ class IssueComment(UIDMixin):
         if self.content == content:
             return True
 
-        with transaction.commit_on_success():
+        with transaction.atomic():
             IssueCommentRevision.objects.create(comment=self,
                                                 version=expected_version,
                                                 created_at=self.created_at,

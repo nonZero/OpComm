@@ -40,9 +40,9 @@ class UserChangeForm(forms.ModelForm):
     password hash display field.
     """
     password = ReadOnlyPasswordHashField(label=_("Password"),
-        help_text=_("Raw passwords are not stored, so there is no way to see "
-                    "this user's password, but you can change the password "
-                    "using <a href=\"password/\">this form</a>."))
+                                         help_text=_("Raw passwords are not stored, so there is no way to see "
+                                                     "this user's password, but you can change the password "
+                                                     "using <a href=\"password/\">this form</a>."))
 
     class Meta:
         model = OCUser
@@ -58,18 +58,20 @@ class UserChangeForm(forms.ModelForm):
 class UserMembershipInline(admin.TabularInline):
     model = Membership
     fk_name = 'user'
+    extra = 0
+
 
 class MembershipAdmin(admin.ModelAdmin):
-
     list_display = (
-                    'community',
-                    'default_group_name',
-                    'user',
-                    'created_at',
-                    )
-    
+        'community',
+        'default_group_name',
+        'user',
+        'created_at',
+    )
+
     list_filter = ('community', 'default_group_name',)
-    
+
+
 class OCUserAdmin(UserAdmin):
     # The forms to add and change user instances
     form = UserChangeForm
@@ -81,7 +83,7 @@ class OCUserAdmin(UserAdmin):
     list_display = ('email', 'display_name', 'is_staff', 'is_superuser')
     list_filter = ('is_staff', 'is_superuser',)
     fieldsets = (
-        (None, {'fields': ('email', 'password', 'is_active')}),
+        (None, {'fields': ('email', 'password', 'is_active', 'opt_in')}),
         ('Personal info', {'fields': ('display_name',)}),
         ('Permissions', {'fields': ('is_superuser', 'is_staff')}),
         ('Important dates', {'fields': ('last_login',)}),
@@ -90,7 +92,7 @@ class OCUserAdmin(UserAdmin):
         (None, {
             'classes': ('wide',),
             'fields': ('email', 'display_name', 'password1', 'password2')}
-        ),
+         ),
     )
     search_fields = ('email',)
     ordering = ('email',)
@@ -98,14 +100,16 @@ class OCUserAdmin(UserAdmin):
 
     inlines = [UserMembershipInline]
 
+
 admin.site.register(OCUser, OCUserAdmin)
 admin.site.unregister(Group)
 
 admin.site.register(Membership, MembershipAdmin)
 
+
 class InvitationAdmin(admin.ModelAdmin):
     list_display = ('community', 'name', 'email', 'default_group_name', 'last_sent_at', 'status')
     ordering = ('community', 'last_sent_at')
 
-admin.site.register(Invitation, InvitationAdmin)
 
+admin.site.register(Invitation, InvitationAdmin)

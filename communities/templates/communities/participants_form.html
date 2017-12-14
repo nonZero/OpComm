@@ -1,5 +1,5 @@
 {% extends "dialog.html" %}
-{% load i18n floppyforms community_tags %}
+{% load i18n community_tags %}
 
 {% block page_header %}
     <span class="participant-title">
@@ -13,8 +13,8 @@
 <form id="participants_form">
 
 <div id="p_select" style="display:none;" >
-{% formfield form.upcoming_meeting_participants %}
-{% formfield form.upcoming_meeting_guests %}
+{{ form.upcoming_meeting_participants }}
+{{ form.upcoming_meeting_guests }}
 </div> 
 
 <div class="participants-body-form"{% if not object.full_participants.count %} style="display: none;"{% endif %}>
@@ -31,7 +31,7 @@
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane active" id="board">
-			<div class="board_select">{% formfield form.board %}</div>
+			<div class="board_select">{{ form.board }}</div>
 		</div>
 		<div class="tab-pane" id="members">
 			<ul class="list-group" id="members-list">

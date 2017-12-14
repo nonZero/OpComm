@@ -28,8 +28,7 @@ class EditUpcomingMeetingForm(forms.ModelForm):
 
         widgets = {
             'upcoming_meeting_title': OCTextInput,
-            'upcoming_meeting_scheduled_at': forms.SplitDateTimeField,
-            # 'upcoming_meeting_scheduled_at': OCSplitDateTime,
+            'upcoming_meeting_scheduled_at': OCSplitDateTime,
             'upcoming_meeting_location': OCTextInput,
             # 'voting_ends_at': OCSplitDateTime,
             'upcoming_meeting_comments': HTMLArea,
@@ -73,8 +72,7 @@ class PublishUpcomingMeetingForm(forms.ModelForm):
 
     class Meta:
         model = Community
-
-        fields = ()
+        fields = []
 
 
 class EditUpcomingMeetingSummaryForm(forms.ModelForm):

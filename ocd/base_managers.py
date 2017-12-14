@@ -1,4 +1,3 @@
-from django.contrib.auth.models import AnonymousUser
 from django.db import models
 from django.db.models.query import QuerySet
 from haystack.query import SearchQuerySet
@@ -13,12 +12,7 @@ class ActiveQuerySetMixin(object):
     """
 
     def active(self):
-        return self.get_query_set().filter(active=True)
-
-
-GROUPS_ALLOWED_CONFIDENTIAL = frozenset([DefaultGroups.BOARD,
-                                         DefaultGroups.CHAIRMAN,
-                                         DefaultGroups.SECRETARY])
+        return self.get_queryset().filter(active=True)
 
 
 class ConfidentialQuerySetMixin(object):
@@ -28,31 +22,30 @@ class ConfidentialQuerySetMixin(object):
 
     """
 
-    def object_access_control(self, user, community):
+    def object_access_control(self, user=None, community=None):
 
-        if not user:
-            user = AnonymousUser()
-        if not community:
+        if not user or not community:
             raise ValueError('The object access control method requires '
-                             'a community object.')
+                             'both a user and a community object.')
 
-        if user.is_superuser:
+        if hasattr(user, '_is_mock') and user._is_mock is True:
+            return self.filter(is_confidential=False)
+
+        elif user.is_superuser:
             return self.all()
 
-        try:
-            memberships = user.memberships
-        except AttributeError:
-            # No memberships -- not a proper user
+        elif user.is_anonymous():
             return self.filter(is_confidential=False)
-        else:
-            # TODO: integrate with permissions properly
-            groups = (memberships.filter(community=community)
-                .values_list('default_group_name', flat=True))
 
-            if GROUPS_ALLOWED_CONFIDENTIAL & frozenset(groups):
-                return self.all()
-            else:
+        else:
+            # we have a membership. return according to member's level.
+            # TODO: hook properly into permission system.
+            memberships = user.memberships.filter(community=community)
+            lookup = [m.default_group_name for m in memberships]
+            if DefaultGroups.MEMBER in lookup and len(lookup) == 1:
                 return self.filter(is_confidential=False)
+            else:
+                return self.all()
 
 
 class ConfidentialQuerySet(QuerySet, ConfidentialQuerySetMixin):
@@ -61,7 +54,7 @@ class ConfidentialQuerySet(QuerySet, ConfidentialQuerySetMixin):
 
 class ConfidentialManager(models.Manager, ConfidentialQuerySetMixin):
 
-    def get_query_set(self):
+    def get_queryset(self):
         return ConfidentialQuerySet(self.model, using=self._db)
 
 

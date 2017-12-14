@@ -1777,9 +1777,9 @@ li.btn-tab span {
 #proposal-type li a {
 	color: #6C6C6E;
 }
-label[for=id_proposal-title] {
-	padding-top: 20px;
-}
+/*label[for=id_proposal-title] {*/
+	/*padding-top: 20px;*/
+/*}*/
 #issue-detail-siblings .btn-group-justified {
 	margin-bottom: 0;
 }

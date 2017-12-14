@@ -10,7 +10,7 @@ part of the OCUser model.
 
 
 def load_community_permissions(user, community):
-    if user.is_authenticated():
+    if user.is_authenticated:
         try:
             m = user.memberships.get(community=community)
             return m.get_permissions()

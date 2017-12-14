@@ -75,7 +75,7 @@ class IssueList(IssueMixin, ListView):
             d['sorted_issues'] = super(IssueList, self).get_queryset().exclude(
                 status=IssueStatus.ARCHIVED).order_by('-order_by_votes')
             if d['cperms']['issues'].has_key('vote_ranking') and \
-                    self.request.user.is_authenticated():
+                    self.request.user.is_authenticated:
                 my_ranking = models.IssueRankingVote.objects.filter(
                     voted_by=self.request.user,
                     issue__community_id=d['community'].id) \
@@ -145,7 +145,7 @@ class IssueDetailView(IssueMixin, DetailView):
         d['proposals'] = self.object.proposals.object_access_control(
             user=self.request.user, community=self.community).open()
 
-        d['upcoming_issues'] = self.object.community.upcoming_issues(user=self.request.user)
+        d['upcoming_issues'] = self.object.community.upcoming_issues(user=self.request.user, community=self.community)
 
         d['agenda_items'] = self.object.agenda_items.all()
         for ai in d['agenda_items']:
@@ -717,9 +717,7 @@ class ProposalVoteView(ProposalVoteMixin, DetailView):
         is_board = request.POST.get('board', False)
         user_id = request.POST.get('user', request.user.id)
         voter_id = request.user.id
-        voter_group = request.user.get_default_group(self.community) \
-            if request.user.is_authenticated() \
-            else ''
+        voter_group = request.user.get_default_group(self.community) if request.user.is_authenticated else ''
         val = request.POST['val']
         if is_board:
             # vote for board member by chairman or board member
@@ -795,7 +793,7 @@ class ProposalVoteView(ProposalVoteMixin, DetailView):
     def get(self, request, *args, **kwargs):
 
         voter_id = request.user.id
-        if not request.user.is_authenticated():
+        if not request.user.is_authenticated:
             return redirect_to_login(request.build_absolute_uri())
 
         is_board = request.GET.get('board', False)
@@ -820,14 +818,12 @@ class MultiProposalVoteView(ProposalVoteMixin, DetailView):
         voted_ids = json.loads(request.POST['users'])
         proposal = self.get_object()
         pid = proposal.id
-        voter_group = request.user.get_default_group(self.community) \
-            if request.user.is_authenticated() \
-            else ''
+        voter_group = request.user.get_default_group(self.community) if request.user.is_authenticated else ''
 
         val = request.POST['val']
 
         value = self._vote_values_map(val)
-        if value == None:
+        if value is None:
             return HttpResponseBadRequest('vote value not valid')
 
         vote_failed = []
@@ -951,7 +947,6 @@ def up_down_vote(request, community_id, arg_id):
 class ProposalVoteArgumentCreateView(CreateView):
     model = models.ProposalVoteArgument
     form_class = CreateProposalVoteArgumentForm
-    fields = ['argument', 'proposal_vote', 'created_by']
     template_name = 'issues/proposal_vote_argument_form.html'
 
     def get_success_url(self):

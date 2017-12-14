@@ -24,7 +24,8 @@ class CreateIssueForm(forms.ModelForm):
         super(CreateIssueForm, self).__init__(*args, **kwargs)
         self.new_proposal = CreateProposalBaseForm(community=community,
                                                    prefix='proposal', data=self.data if self.is_bound else None)
-        # self.new_proposal.fields['type'].required = False
+        self.new_proposal.fields['title'].required = False
+        self.new_proposal.fields['content'].required = False
         # self.new_proposal.fields['type'].widget.attrs['class'] = 'form-control'
         # self.fields['confidential_reason'].empty_label = _('Not Confidential')
         # self.fields['confidential_reason'].queryset = community.confidential_reasons.all().order_by('id')
@@ -37,13 +38,10 @@ class CreateIssueForm(forms.ModelForm):
 
     def save(self, commit=True):
         o = super(CreateIssueForm, self).save(commit)
-        self.new_proposal.instance.issue = o
-        self.new_proposal.instance.created_by = o.created_by
-        self.new_proposal.save()
-        # if self.data.get('proposal-type') != '':
-        #     self.new_proposal.instance.issue = o
-        #     self.new_proposal.instance.created_by = o.created_by
-        #     self.new_proposal.save()
+        if self.data.get('proposal-title') != '':
+            self.new_proposal.instance.issue = o
+            self.new_proposal.instance.created_by = o.created_by
+            self.new_proposal.save()
         return o
 
 
@@ -59,8 +57,8 @@ class UpdateIssueForm(forms.ModelForm):
             # 'confidential_reason': OCIssueRadioButtons
         }
 
-    # def __init__(self, community=None, *args, **kwargs):
-    #     super(UpdateIssueForm, self).__init__(*args, **kwargs)
+    def __init__(self, community=None, *args, **kwargs):
+        super(UpdateIssueForm, self).__init__(*args, **kwargs)
     #     self.fields['confidential_reason'].empty_label = _('Not Confidential')
     #     self.fields['confidential_reason'].queryset = \
     #         community.confidential_reasons.all().order_by('id')
@@ -182,12 +180,6 @@ class CreateIssueCommentForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        #         self.helper = FormHelper()
-        #         if self.form_id:
-        #             self.helper.form_id = self.form_id
-
-        #         self.helper.add_input(Submit('submit', self.submit_label))
-
         super(CreateIssueCommentForm, self).__init__(*args, **kwargs)
 
 
@@ -202,9 +194,9 @@ class CreateProposalVoteArgumentForm(forms.ModelForm):
 
     class Meta:
         model = models.ProposalVoteArgument
-        fields = (
+        fields = [
             'argument',
-        )
+        ]
 
 
 class EditProposalVoteArgumentForm(CreateProposalVoteArgumentForm):
