@@ -310,7 +310,7 @@ msgstr "נושאים לדיון"
 #: .\templates\search\search.html.py:16 .\templates\search\search.html.py:20
 #: .\templates\search\search.html.py:24
 msgid "Proposals"
-msgstr "הצעות"
+msgstr "התייחסויות"
 
 #: .\templates\search\search.html.py:29
 msgid "Results for"

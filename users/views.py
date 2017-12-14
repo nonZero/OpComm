@@ -1,3 +1,5 @@
+import pdb
+
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import permission_required
@@ -10,6 +12,7 @@ from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext_lazy as _
+from django.views import View
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import FormView
 from django.views.generic.detail import DetailView
@@ -59,7 +62,9 @@ def _cmp_func(a, b):
     else:
         return res
 
+
 cmp_func = cmp_to_key(_cmp_func)
+
 
 class MembershipMixin(CommunityMixin):
     model = models.Membership
@@ -135,6 +140,17 @@ class DeleteInvitationView(CommunityMixin, DeleteView):
         return HttpResponse("OK")
 
 
+class UnsubscribeView(View):
+    def get(self, request, *args, **kwargs):
+        try:
+            user = OCUser.objects.get(uid=self.kwargs.get('uid', 'xxx'))
+        except OCUser.DoesNotExist:
+            raise Http404
+        user.opt_in = False
+        user.save()
+        return HttpResponse(_('Email address [{}] has been successfully removed from out list'.format(user.email.lower())))
+
+
 class AcceptInvitationView(DetailView):
     slug_field = 'code'
     slug_url_kwarg = 'code'
@@ -146,8 +162,7 @@ class AcceptInvitationView(DetailView):
         if self.request.method == "POST":
             return QuickSignupForm(self.request.POST)
         else:
-            return QuickSignupForm(initial={ \
-                'display_name': self.get_object().name})
+            return QuickSignupForm(initial={'display_name': self.get_object().name})
 
     def get_context_data(self, **kwargs):
         d = super(AcceptInvitationView, self).get_context_data(**kwargs)

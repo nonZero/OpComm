@@ -22,7 +22,7 @@ msgstr ""
 #: templates/issues/_issue_main.html:85
 #: templates/issues/proposal_detail.html:69
 msgid "Proposals"
-msgstr "הצעות החלטה"
+msgstr "התייחסויות"
 
 #: admin.py:70
 msgid "Comments"
@@ -65,7 +65,7 @@ msgstr "הוספה"
 
 #: models.py:55 templates/issues/assignment_list.html:44
 msgid "Open"
-msgstr "הצעה פתוחה"
+msgstr "התייחסות פתוחה"
 
 #: models.py:56
 msgid "In upcoming meeting"
@@ -191,11 +191,11 @@ msgstr "הצבעה בוצעה על ידי יושב ראש"
 
 #: models.py:399 models.py:678
 msgid "Proposal Vote"
-msgstr "הצבעה על הצעה"
+msgstr "הצבעה על התייחסות"
 
 #: models.py:400 models.py:679
 msgid "Proposal Votes"
-msgstr "הצבעות על הצעה"
+msgstr "הצבעות על התייחסות"
 
 #: models.py:410 templates/issues/proposal_detail_main.html:84
 #: templates/issues/proposal_form.html:29
@@ -208,11 +208,11 @@ msgstr "בדיון"
 
 #: models.py:430
 msgid "Accepted"
-msgstr "ההחלטה התקבלה"
+msgstr "ההתייחסות התקבלה"
 
 #: models.py:431
 msgid "Rejected"
-msgstr "ההצעה נדחתה"
+msgstr "ההתייחסות נדחתה"
 
 #: models.py:440 models.py:689
 msgid "Create at"
@@ -263,7 +263,7 @@ msgstr "תגיות"
 
 #: models.py:476
 msgid "Proposal"
-msgstr "הצעת החלטה"
+msgstr "התייחסות"
 
 #: models.py:688 templates/issues/_vote_arguments.html:99
 msgid "Argument"
@@ -271,19 +271,19 @@ msgstr "טיעון"
 
 #: models.py:696
 msgid "Proposal vote argument"
-msgstr "טיעון על הצעה"
+msgstr "טיעון על התייחסות"
 
 #: models.py:697
 msgid "Proposal vote arguments"
-msgstr "טיעונים על הצעות"
+msgstr "טיעונים על התייחסויות"
 
 #: models.py:743
 msgid "Proposal vote argument ranking"
-msgstr "הצבעה על טיעוני הצעה"
+msgstr "הצבעה על התייחסות"
 
 #: models.py:744
 msgid "Proposal vote arguments ranking"
-msgstr "הצבעות על טיעוני הצעות"
+msgstr "הצבעות על התייחסויות"
 
 #: models.py:761
 msgid "Vote result"
@@ -320,7 +320,7 @@ msgstr "נגד"
 
 #: templates/issues/_argument_action_modal.html:11
 msgid "Confirm argument submission"
-msgstr "אישור שליחת טיעון"
+msgstr "אישור שליחת התייחסות"
 
 #: templates/issues/_argument_action_modal.html:14
 msgid "Pay attention"
@@ -390,15 +390,15 @@ msgstr "צרף קובץ"
 #: templates/issues/_issue_main.html:63
 #: templates/issues/proposal_detail.html:59
 msgid "Decisions"
-msgstr "החלטות"
+msgstr "התייחסויות"
 
 #: templates/issues/_issue_main.html:92
 msgid "Type the new proposal title"
-msgstr "הקלד כותרת עבור ההצעה החדשה"
+msgstr "הקלד כותרת עבור התייחסות החדשה"
 
 #: templates/issues/_issue_main.html:128
 msgid "Add a proposal"
-msgstr "הוסף הצעה"
+msgstr "הוסף התייחסות"
 
 #: templates/issues/_issue_main.html:134
 msgid "Issue discussion summary"
@@ -552,7 +552,7 @@ msgstr "נושא חדש"
 #: templates/issues/issue_create_form.html:19
 #: templates/issues/proposal_form.html:20
 msgid "New proposal"
-msgstr "הצעת החלטה חדשה"
+msgstr "התייחסות חדשה"
 
 #: templates/issues/issue_detail.html:26
 #: templates/issues/proposal_detail.html:39
@@ -626,7 +626,7 @@ msgstr "חפשו בנושאים לדיון"
 
 #: templates/issues/issue_list.html:59
 msgid "My agenda"
-msgstr "ההצעה שלי לסדר היום"
+msgstr "ההתייחסות שלי לסדר היום"
 
 #: templates/issues/issue_list.html:60
 msgid ""
@@ -693,11 +693,11 @@ msgstr "משימה לביצוע!"
 
 #: templates/issues/proposal_detail_main.html:26
 msgid "Proposal accepted"
-msgstr "ההצעה התקבלה"
+msgstr "ההתייחסות התקבלה"
 
 #: templates/issues/proposal_detail_main.html:31
 msgid "Proposal rejected"
-msgstr "ההצעה נדחתה"
+msgstr "ההתייחסות נדחתה"
 
 #: templates/issues/proposal_detail_main.html:35
 msgid "Cancel approval"
@@ -741,19 +741,19 @@ msgstr "ועד"
 
 #: templates/issues/proposal_detail_main.html:158
 msgid "Accept proposal"
-msgstr "קבל את ההחלטה"
+msgstr "קבל את ההתייחסות"
 
 #: templates/issues/proposal_detail_main.html:163
 msgid "Reject proposal"
-msgstr "דחה הצעה"
+msgstr "דחה התייחסות"
 
 #: templates/issues/proposal_form.html:18
 msgid "Edit proposal"
-msgstr "עריכת הצעת החלטה"
+msgstr "עריכת התייחסות"
 
 #: templates/issues/proposal_form.html:129
 msgid "Are you sure you want to remove the proposal confidentiality"
-msgstr "האם אתה בטוח שברצונך להפוך הצעה חסויה לגלויה"
+msgstr "האם אתה בטוח שברצונך להפוך התייחסות חסויה לגלויה"
 
 #~ msgid "Not Confidential"
 #~ msgstr "לא חסוי"

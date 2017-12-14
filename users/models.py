@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from issues.models import Proposal, ProposalVoteValue, ProposalStatus
 from meetings.models import MeetingParticipant
+from ocd.utilities import create_uuid
 from users.default_roles import DefaultGroups
 import datetime
 import logging
@@ -64,15 +65,13 @@ class OCUserManager(BaseUserManager):
 
 
 class OCUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_('email address'), max_length=255, unique=True,
-                              db_index=True,
-                              )
+    uid = models.CharField(max_length=32, unique=True, default=create_uuid)
+    email = models.EmailField(_('email address'), max_length=255, unique=True, db_index=True)
     display_name = models.CharField(_("Your name"), max_length=200)
     opt_in = models.BooleanField(_('Allow emails?'), default=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(_('staff status'), default=False,
-                                   help_text=_('Designates whether the user can log into this admin '
-                                               'site.'))
+                                   help_text=_('Designates whether the user can log into this admin site.'))
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
     objects = OCUserManager()

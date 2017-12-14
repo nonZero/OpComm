@@ -156,6 +156,13 @@
                 {% endfor %}
 
             </div>
+            {% if recipient %}
+                <div class="unsubscribe" style="text-align: center;margin-top: 10px; margin-bottom: 20px;">
+                    <a href="{{ base_url }}{% url 'unsubscribe' recipient.uid %}" target="_blank">
+                        {% trans 'Unsubscribe from mailing list' %}
+                    </a>
+                </div>
+            {% endif %}
         </div>
     </div>
 

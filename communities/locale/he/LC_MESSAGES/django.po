@@ -430,7 +430,7 @@ msgstr "הכל"
 #: templates/emails/agenda.html:115 templates/search/search.html:16
 #: templates/search/search.html:20 templates/search/search.html:24
 msgid "Proposals"
-msgstr "הצעות"
+msgstr "התייחסויות"
 
 #: templates/communities/community_search.html:20
 #: templates/search/search.html:33
@@ -557,7 +557,7 @@ msgstr "בין ועד מנהל נבחר ובין הציבור, מכיוון שה
 
 #: templates/communities/landing.html:175
 msgid "excluded"
-msgstr "קבלת ההחלטות"
+msgstr "קבלת ההתייחסות"
 
 #: templates/communities/landing.html:175
 msgid ""
@@ -565,18 +565,18 @@ msgid ""
 "protest in between elections"
 msgstr ""
 "והוא נשאר רק עם האפשרות לבחור בחברי הוועד ולמחות בין בחירות לבחירות כאשר "
-"ההחלטות המתקבלות אינן לשביעות רצונו"
+"ההתייחסות המתקבלות אינן לשביעות רצונו"
 
 #: templates/communities/landing.html:220
 msgid "Participatory decision making in democratic communities"
-msgstr "מנגנון קבלת החלטות משתף בקהילות דמוקרטיות"
+msgstr "מנגנון קבלת התייחסות משתף בקהילות דמוקרטיות"
 
 #: templates/communities/landing.html:223
 msgid ""
 "We aim to return democracy to its fundamental principle – public "
 "participation in the decision making process"
 msgstr ""
-"אנחנו שואפים להחזיר את הדמוקרטיה לשורשיה - שיתוף הציבור בתהליך קבלת ההחלטות"
+"אנחנו שואפים להחזיר את הדמוקרטיה לשורשיה - שיתוף הציבור בתהליך קבלת ההתייחסות"
 
 #: templates/communities/landing.html:226
 msgid ""
@@ -591,7 +591,7 @@ msgstr ""
 msgid ""
 "The complete platform will accompany the process of decision making as it "
 "progresses"
-msgstr "הפלטפורמה תלווה את תהליך קבלת ההחלטות לכל אורכו"
+msgstr "הפלטפורמה תלווה את תהליך קבלת ההתייחסות לכל אורכו"
 
 #: templates/communities/landing.html:257
 msgid "Agenda Setting"
@@ -635,7 +635,7 @@ msgid ""
 "The board uses the platform to manage issues, meeting agenda and decisions, "
 "and keeps the community informed with no extra effort"
 msgstr ""
-"הוועד משתמש במערכת לניהול נושאים, סדר יום של פגישות והחלטות, וכך משאיר את "
+"הוועד משתמש במערכת לניהול נושאים, סדר יום של פגישות והתייחסות, וכך משאיר את "
 "הקהילה מיודעת ומחוברת ללא השקעת מאמץ נוסף"
 
 #: templates/communities/landing.html:310
@@ -659,8 +659,8 @@ msgid ""
 "Community members raise issues (initiatives), introduce proposals, impact "
 "the agenda, and vote on proposals (referendum)"
 msgstr ""
-"חברי הקהילה מסוגלים להעלות נושאים לדיון (יוזמות), להציג הצעות, להשפיע על סדר "
-"היום ולהצביע עבור החלטות"
+"חברי הקהילה מסוגלים להעלות נושאים לדיון (יוזמות), להציג התייחסויות, להשפיע על סדר "
+"היום ולהצביע עבור התייחסות"
 
 #: templates/communities/landing.html:324
 msgid "Empowerment"
@@ -671,7 +671,7 @@ msgid ""
 "The community is the true sovereign and has full power over decision making "
 "(as done by jury and public committees)"
 msgstr ""
-"הקהילה היא הריבון האמיתי, ובידיה הכוח המלא על קבלת ההחלטות (כפי שנעשה על ידי "
+"הקהילה היא הריבון האמיתי, ובידיה הכוח המלא על קבלת ההתייחסות (כפי שנעשה על ידי "
 "חבר מושבעים ועל ידי ועדות ציבוריות)"
 
 #: templates/communities/landing.html:348
@@ -845,7 +845,7 @@ msgstr "נושא חדש"
 
 #: templates/communities/upcoming.html:158
 msgid "All proposals / Voted"
-msgstr "סך הצעות/כמה הצבעתי"
+msgstr "סך התייחסויות/כמה הצבעתי"
 
 #: templates/communities/upcoming.html:178
 msgid "Type the new issue title"
@@ -918,7 +918,7 @@ msgstr "חברי"
 
 #: templates/emails/_protocol.html:90
 msgid "Issues & Decisions"
-msgstr "נושאים והחלטות"
+msgstr "נושאים והתייחסות"
 
 #: templates/emails/_protocol.html:102 templates/emails/_protocol.html:105
 #: templates/emails/_protocol.html:153 templates/emails/_protocol.html:156
@@ -934,11 +934,11 @@ msgstr "קבצים קשורים"
 
 #: templates/emails/_protocol.html:143
 msgid "Accepted proposals"
-msgstr "החלטות שהתקבלו"
+msgstr "התייחסויות שהתקבלו"
 
 #: templates/emails/_protocol.html:177
 msgid "Rejected proposals"
-msgstr "הצעות החלטה שנדחו"
+msgstr "התייחסויות שנדחו"
 
 #: templates/emails/agenda.html:34
 msgid "Published at"
@@ -950,7 +950,7 @@ msgstr "טיוטה"
 
 #: templates/emails/agenda.html:44
 msgid "Enter site and vote on proposals"
-msgstr "כניסה לאתר והצבעה על ההצעות"
+msgstr "כניסה לאתר והצבעה על ההתייחסויות"
 
 #: templates/emails/agenda.html:72
 msgid "Issues "
@@ -962,7 +962,7 @@ msgid ""
 "for/against buttons under the proposal"
 msgstr ""
 "למידע נוסף יש ללחוץ על הקישורים. להצבעה מתוך המייל לחצו על כפורי \"בעד\" או "
-"\"נגד\" שמתחת להצעת החלטה"
+"\"נגד\" שמתחת להתייחסות"
 
 #: templates/emails/agenda.html:146
 msgid "For"

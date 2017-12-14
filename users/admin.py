@@ -84,7 +84,7 @@ class OCUserAdmin(UserAdmin):
     list_filter = ('is_staff', 'is_superuser',)
     fieldsets = (
         (None, {'fields': ('email', 'password', 'is_active', 'opt_in')}),
-        ('Personal info', {'fields': ('display_name',)}),
+        ('Personal info', {'fields': ('display_name', 'uid')}),
         ('Permissions', {'fields': ('is_superuser', 'is_staff')}),
         ('Important dates', {'fields': ('last_login',)}),
     )
