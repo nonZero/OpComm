@@ -1,3 +1,5 @@
+import pdb
+
 from communities.models import Community
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
@@ -28,7 +30,14 @@ class ProtectedMixin(object):
     required_permission_for_post = None
 
     def dispatch(self, request, *args, **kwargs):
-
+        if 'uid' in request.GET and not request.user.is_authenticated:
+            from users.models import OCUser
+            try:
+                user = OCUser.objects.get(uid=request.GET.get('uid', 'xxx'))
+                from django.contrib.auth import login as quick_login
+                quick_login(request, user)
+            except OCUser.DoesNotExist:
+                pass
         if not request.user.is_authenticated:
             if not self.community.is_public:
                 return redirect_to_login(request.build_absolute_uri())

@@ -55,11 +55,13 @@ id="meeting-detail"
             <div class="pull-left">
                 <h5><i class="fa fa-calendar"></i> {{object.held_at|date:"d/m/Y H:i"}}&nbsp;&nbsp;</h5>
             </div>
+            {% comment %}
             {% if object.location %}
             <div class="pull-left">
                 <h5><i class="fa fa-map-marker"></i> {{object.location}}</h5>
             </div>
             {% endif %}
+            {% endcomment %}
             <div class="pull-left">
                 <h5><i class="fa fa-users"></i> <a data-toggle="modal" href="#participants">{% trans "Participants" %}: {{total_participants}}</a></h5>
             </div>

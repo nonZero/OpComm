@@ -1,8 +1,7 @@
 from __future__ import unicode_literals
 
 from django.apps import apps
-from haystack.backends.whoosh_backend import WhooshEngine
-from haystack.backends.whoosh_backend import WhooshSearchBackend
+from haystack.backends.whoosh_backend import WhooshEngine, WhooshSearchBackend
 from haystack.fields import BooleanField
 from haystack.constants import DJANGO_CT, DJANGO_ID
 from haystack.models import SearchResult

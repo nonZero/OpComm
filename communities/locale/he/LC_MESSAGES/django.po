@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Open Community\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-13 20:26+0200\n"
-"PO-Revision-Date: 2017-12-13 20:30+0200\n"
+"POT-Creation-Date: 2017-12-14 12:23+0200\n"
+"PO-Revision-Date: 2017-12-14 12:24+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -47,10 +47,6 @@ msgstr "רק לי (לבדיקה)"
 #: models.py:27
 msgid "Only attendees"
 msgstr "למשתתפים בפגישה בלבד"
-
-#: models.py:28 models.py:34
-msgid "The board"
-msgstr "לועד בלבד"
 
 #: models.py:29 models.py:35
 msgid "All members"
@@ -369,26 +365,9 @@ msgstr ""
 msgid "Close"
 msgstr "סגור"
 
-#: templates/base.html:72
-msgid "About"
-msgstr "אודות"
-
-#: templates/base.html:74
+#: templates/base.html:77
 msgid "Back to top"
 msgstr "חזור למעלה"
-
-#: templates/base.html:77
-msgid "An eKnight"
-msgstr ""
-
-#: templates/base.html:77
-msgid "from Hasadna"
-msgstr ""
-
-#: templates/base.html:82 templates/emails/agenda.html:35
-#: templates/emails/agenda_title.txt:3 templatetags/community_tags.py:40
-msgid "Version"
-msgstr "גרסא"
 
 #: templates/communities/_issue.html:40
 msgid "Issue in discussion"
@@ -659,8 +638,8 @@ msgid ""
 "Community members raise issues (initiatives), introduce proposals, impact "
 "the agenda, and vote on proposals (referendum)"
 msgstr ""
-"חברי הקהילה מסוגלים להעלות נושאים לדיון (יוזמות), להציג התייחסויות, להשפיע על סדר "
-"היום ולהצביע עבור התייחסות"
+"חברי הקהילה מסוגלים להעלות נושאים לדיון (יוזמות), להציג התייחסויות, להשפיע "
+"על סדר היום ולהצביע עבור התייחסות"
 
 #: templates/communities/landing.html:324
 msgid "Empowerment"
@@ -671,8 +650,8 @@ msgid ""
 "The community is the true sovereign and has full power over decision making "
 "(as done by jury and public committees)"
 msgstr ""
-"הקהילה היא הריבון האמיתי, ובידיה הכוח המלא על קבלת ההתייחסות (כפי שנעשה על ידי "
-"חבר מושבעים ועל ידי ועדות ציבוריות)"
+"הקהילה היא הריבון האמיתי, ובידיה הכוח המלא על קבלת ההתייחסות (כפי שנעשה על "
+"ידי חבר מושבעים ועל ידי ועדות ציבוריות)"
 
 #: templates/communities/landing.html:348
 msgid "The project runs within the framework of the"
@@ -940,9 +919,18 @@ msgstr "התייחסויות שהתקבלו"
 msgid "Rejected proposals"
 msgstr "התייחסויות שנדחו"
 
+#: templates/emails/_protocol.html:206 templates/emails/agenda.html:162
+msgid "Unsubscribe from mailing list"
+msgstr "הסר מרשימת תפוצה"
+
 #: templates/emails/agenda.html:34
 msgid "Published at"
 msgstr "פורסם ב -"
+
+#: templates/emails/agenda.html:35 templates/emails/agenda_title.txt:3
+#: templatetags/community_tags.py:40
+msgid "Version"
+msgstr "גרסא"
 
 #: templates/emails/agenda.html:37 templatetags/community_tags.py:61
 msgid "Draft"
@@ -1124,22 +1112,28 @@ msgstr "הצבעה פעילה"
 msgid "Published"
 msgstr "פורסם"
 
-#: views.py:231
+#: views.py:230
 #, python-format
 msgid "Sending to %d users"
 msgstr "שולח ל-%d משתמשים"
 
-#: views.py:330
+#: views.py:329
 msgid "Not a valid number for page."
 msgstr "מספר עמוד לא תקין"
 
-#: views.py:333
+#: views.py:332
 msgid "Pages should be 1 or greater."
 msgstr "מספר עמוד צריך להיות 1 או יותר."
 
-#: views.py:342
+#: views.py:341
 msgid "No such page!"
 msgstr "דף לא קיים!"
+
+#~ msgid "The board"
+#~ msgstr "לועד בלבד"
+
+#~ msgid "About"
+#~ msgstr "אודות"
 
 #~ msgid "Our team"
 #~ msgstr "הצוות"

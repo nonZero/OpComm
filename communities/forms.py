@@ -13,7 +13,7 @@ class EditUpcomingMeetingForm(forms.ModelForm):
 
         fields = [
             'upcoming_meeting_title',
-            'upcoming_meeting_location',
+            # 'upcoming_meeting_location',
             'upcoming_meeting_scheduled_at',
             # 'voting_ends_at',
             'upcoming_meeting_comments',
@@ -22,14 +22,14 @@ class EditUpcomingMeetingForm(forms.ModelForm):
         labels = {
             'upcoming_meeting_title': _('Title'),
             'upcoming_meeting_scheduled_at': _('Scheduled at'),
-            'upcoming_meeting_location': _('Location'),
+            # 'upcoming_meeting_location': _('Location'),
             'upcoming_meeting_comments': _('Background'),
         }
 
         widgets = {
             'upcoming_meeting_title': OCTextInput,
             'upcoming_meeting_scheduled_at': OCSplitDateTime,
-            'upcoming_meeting_location': OCTextInput,
+            # 'upcoming_meeting_location': OCTextInput,
             # 'voting_ends_at': OCSplitDateTime,
             'upcoming_meeting_comments': HTMLArea,
         }

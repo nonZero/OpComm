@@ -132,7 +132,7 @@ INSTALLED_APPS = [
     'django_nose',
     'django_extensions',
     'taggit',
-    # 'haystack',
+    'haystack',
     'oc_util',
 ]
 
@@ -140,8 +140,8 @@ AUTH_USER_MODEL = 'users.OCUser'
 
 HAYSTACK_CONNECTIONS = {
     'default': {
-        # 'ENGINE': 'ocd.custom_whoosh_backend.MyWhooshEngine',
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        # 'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'ENGINE': 'ocd.custom_whoosh_backend.MyWhooshEngine',
         'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
     },
 }

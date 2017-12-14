@@ -98,7 +98,7 @@
 
                     <h3 style="margin:0; background: #ddd;padding: 4px; font-size: 20px;">
                         {% if community.allow_links_in_emails %}
-                        <a href="{{base_url}}{{a.issue.get_absolute_url}}">
+                        <a href="{{base_url}}{{a.issue.get_absolute_url}}?uid={{recipient.uid}}">
                             {{a.issue.title}}{% if a.issue.is_confidential %} [{% trans "Confidential" %} - {{ a.issue.confidential_reason }}]{% endif %}
                         </a>
                         {% else %}
@@ -145,7 +145,7 @@
                                 {% for p in a.accepted_proposals.all|dictsort:"created_at" %}
                                     <li style="padding:2px 0">
                                         {% if community.allow_links_in_emails %}
-                                        <a href="{{base_url}}{{p.get_absolute_url}}">
+                                        <a href="{{base_url}}{{p.get_absolute_url}}?uid={{recipient.uid}}">
                                             {% if p.type != 3 %}
                                                 {{ p.get_type_display }}:
                                             {% endif %}
@@ -179,7 +179,7 @@
                                 {% for n in a.rejected_proposals.all|dictsort:"created_at" %}
                                     <li style="padding:2px 0">
                                         {% if community.allow_links_in_emails %}
-                                        <a href="{{base_url}}{{n.get_absolute_url}}">
+                                        <a href="{{base_url}}{{n.get_absolute_url}}?uid={{recipient.uid}}">
                                             {{n.title}}{% if n.is_confidential and not a.issue.is_confidential %} [{% trans "Confidential" %} - {{ n.confidential_reason }}]{% endif %}
                                         </a>
                                         {% else %}

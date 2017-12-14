@@ -144,7 +144,8 @@ class PublishUpcomingMeetingPreviewView(CommunityModelMixin, DetailView):
     def get_context_data(self, **kwargs):
         d = super(PublishUpcomingMeetingPreviewView, self).get_context_data(**kwargs)
         d['can_straw_vote'] = self.community.upcoming_proposals_any(
-            {'is_open': True}, user=self.request.user, community=self.community) and self.community.upcoming_meeting_is_published
+            {'is_open': True}, user=self.request.user,
+            community=self.community) and self.community.upcoming_meeting_is_published
         upcoming_issues = self.community.upcoming_issues(user=self.request.user, community=self.community)
         d['issue_container'] = []
         for i in upcoming_issues:
@@ -319,8 +320,10 @@ class About(RedirectView):
 class CommunitySearchView(CommunityModelMixin, DetailView):
     template_name = 'search/search.html'
     paginate_by = 20
-    model_names = {'proposal': Proposal,
-                   'issue': Issue}
+    model_names = {
+        'proposal': Proposal,
+        'issue': Issue
+    }
 
     def paginate(self, sqs):
         try:
