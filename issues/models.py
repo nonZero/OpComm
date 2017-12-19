@@ -101,6 +101,8 @@ class Issue(UIDMixin, ConfidentialMixin):
     is_published = models.BooleanField(_("Is published to members"),
                                        default=False)
 
+    voteable = models.BooleanField(_("Open for voting"), default=False)
+
     class Meta:
         verbose_name = _("Issue")
         verbose_name_plural = _("Issues")
@@ -178,13 +180,14 @@ class Issue(UIDMixin, ConfidentialMixin):
     def can_straw_vote(self):
 
         # test date/time limit
-        if self.community.voting_ends_at:
-            time_till_close = self.community.voting_ends_at - timezone.now()
-            if time_till_close.total_seconds() <= 0:
-                return False
+        # if self.community.voting_ends_at:
+        #     time_till_close = self.community.voting_ends_at - timezone.now()
+        #     if time_till_close.total_seconds() <= 0:
+        #         return False
 
         return self.community.straw_voting_enabled and \
                self.is_upcoming and \
+               self.voteable and \
                self.community.upcoming_meeting_is_published and \
                self.proposals.open().count() > 0
 
@@ -501,8 +504,7 @@ class Proposal(UIDMixin, ConfidentialMixin):
 
     @property
     def can_straw_vote(self):
-        return self.status == ProposalStatus.IN_DISCUSSION and \
-               self.issue.can_straw_vote
+        return self.status == ProposalStatus.IN_DISCUSSION and self.issue.can_straw_vote and self.issue.voteable
 
     @property
     def can_show_straw_votes(self):

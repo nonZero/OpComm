@@ -12,7 +12,8 @@ class CreateIssueForm(forms.ModelForm):
         fields = [
             # 'confidential_reason',
             'title',
-            'abstract'
+            'abstract',
+            'voteable'
         ]
         widgets = {
             'title': OCTextInput,
@@ -50,7 +51,8 @@ class UpdateIssueForm(forms.ModelForm):
         model = models.Issue
         fields = [
             # 'confidential_reason',
-            'title'
+            'title',
+            'voteable'
         ]
         widgets = {
             'title': OCTextInput,

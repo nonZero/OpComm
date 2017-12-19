@@ -129,11 +129,13 @@
                 {% include 'issues/_proposal_vote_results.html' %}
             </div>
         {% endif %}
+        {% if proposal.can_straw_vote %}
             <div class="vote_arguments clearfix clear">
-            {% if proposal.has_arguments or user|voted_on:proposal.id %}
-                {% include 'issues/_vote_arguments.html' %}
-            {% endif %}
+                {% if proposal.has_arguments or user|voted_on:proposal.id %}
+                    {% include 'issues/_vote_arguments.html' %}
+                {% endif %}
             </div>
+        {% endif %}
         {% if can_board_vote_self and not proposal.decided %}
             {% include 'issues/_board_vote_self.html' %}
         {% endif %}

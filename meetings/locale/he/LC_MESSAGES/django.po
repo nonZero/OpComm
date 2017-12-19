@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Open Community\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-14 12:24+0200\n"
+"POT-Creation-Date: 2017-12-19 15:41+0200\n"
 "PO-Revision-Date: 2014-10-26 11:04+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,8 +103,8 @@ msgstr "סיכום הפגישה"
 msgid "Agenda items"
 msgstr "סדר יום"
 
-#: models.py:88 templates/meetings/meeting_detail.html:64
-#: templates/meetings/meeting_detail.html:127
+#: models.py:88 templates/meetings/meeting_detail.html:67
+#: templates/meetings/meeting_detail.html:130
 msgid "Participants"
 msgstr "משתתפים"
 
@@ -184,7 +184,7 @@ msgid "Print details"
 msgstr "הדפס פירוט"
 
 #: templates/meetings/meeting_close.html:50
-#: templates/meetings/meeting_detail.html:157
+#: templates/meetings/meeting_detail.html:160
 msgid "Print protocol"
 msgstr "הדפסת פרוטוקול הפגישה"
 
@@ -200,23 +200,23 @@ msgstr "פגישה קרובה"
 msgid "Not set yet"
 msgstr "טרם נקבע"
 
-#: templates/meetings/meeting_detail.html:67
+#: templates/meetings/meeting_detail.html:70
 msgid "Protocol"
 msgstr "פרוטוקול"
 
-#: templates/meetings/meeting_detail.html:97
+#: templates/meetings/meeting_detail.html:100
 msgid "Assigned to"
 msgstr "אחראי"
 
-#: templates/meetings/meeting_detail.html:100
+#: templates/meetings/meeting_detail.html:103
 msgid "Due by"
 msgstr "יעד"
 
-#: templates/meetings/meeting_detail.html:153
+#: templates/meetings/meeting_detail.html:156
 msgid "Meeting protocol"
 msgstr "פרוטוקול הפגישה"
 
-#: templates/meetings/meeting_detail.html:162
+#: templates/meetings/meeting_detail.html:165
 msgid "Close"
 msgstr "סגור"
 

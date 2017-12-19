@@ -7,7 +7,8 @@ bleach==2.1.1
 
 #search
 Whoosh==2.7.4
-django-haystack==2.6.1
+-e git+https://github.com/yaniv14/django-haystack.git@django2a1#egg=django-haystack
+#django-haystack==2.6.1
 
 # queue
 redis

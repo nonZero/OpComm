@@ -115,10 +115,12 @@
                             {% endif %}
                         </div>
                     </div>
+                {% comment %}
                 {% elif can_board_vote_self %}
 	                <div class="issue_proposal_vote{% if proposal.is_confidential %} is_confidential{% endif %}">
 			            {% include 'issues/_board_vote_self.html' %}
 		            </div>
+                {% endcomment %}
         		{% endif %}
             {% endfor %}
         </div>
