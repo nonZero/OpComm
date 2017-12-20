@@ -97,7 +97,6 @@ def create_webuser_and_db():
     run("sudo -iu postgres createdb %s -O %s" % (env.webuser, env.webuser))
     run("sudo -iu postgres psql -c \"alter user %s with password '%s';\"" % (
         env.webuser, env.webuser))
-    enable_postgis(env.webuser)
 
 
 @task
