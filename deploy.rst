@@ -18,7 +18,7 @@ Deployment Instructions
     sudo -iu postgres createuser oc -S -D -R
 
     # create postgres db and grant permisions
-    sudo -iu postgres createdb opencommunity -O oc
+    sudo -iu postgres createdb oc -O oc
 
 For best luck, uncomment the following line in `/etc/nginx/nginx.conf`::
 

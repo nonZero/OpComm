@@ -4,6 +4,7 @@ Django==2.0
 # general libs
 pillow==4.3.0
 bleach==2.1.1
+html5lib==1.0b10 # To solve compatibility issue with bleach 2.1.1
 
 #search
 Whoosh==2.7.4
@@ -19,7 +20,7 @@ django-rq
 # dev stuff
 django-extensions==1.9.8
 django-nose==1.4.5
-django-taggit==0.22.1
+django-taggit==0.22.1 # Use this hack: https://github.com/collinanderson/django-taggit/commit/da1b1bfa56d5d733b92fee79902609d6a8a45dce
 ipython
 #--allow-external python-graph-core
 #--allow-unverified python-graph-core
