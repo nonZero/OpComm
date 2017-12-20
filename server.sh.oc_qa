@@ -1,0 +1,6 @@
+#!/bin/bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source /home/oc_qa/.virtualenvs/oc/bin/activate
+cd $DIR
+exec gunicorn -p /home/oc_qa/oc_qa.pid -b 127.0.0.1:9022 -w 10 -t 90 ocd.wsgi:application
+
