@@ -2,10 +2,10 @@ from django.conf import settings
 
 
 def analytics(request):
-    """OPENCOMMUNITY_ANALYTICS setup in the request context."""
+    """OPENCOMMITTEE_ANALYTICS setup in the request context."""
 
     analytics = {
-        'ga': settings.OPENCOMMUNITY_ANALYTICS.get('ga')
+        'ga': settings.OPENCOMMITTEE_ANALYTICS.get('ga')
     }
 
     return {'analytics': analytics}

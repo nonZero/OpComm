@@ -220,7 +220,7 @@ def supervisor_setup():
                             'dir': env.code_dir,
                             'webuser': env.webuser,
                             'logdir': env.log_dir,
-                        }, mode=0777, use_jinja=True)
+                        }, mode=0o777, use_jinja=True)
 
         run(
             'sudo ln -fs %sconf/supervisor.conf /etc/supervisor/conf.d/%s.conf'

@@ -54,12 +54,14 @@
         </ul>
 	</div>
 <div class="main_meeting_content">
-	<div class="text-right col-xs-12" style="font-size: 14px; border-bottom: 1px solid #666; margin-bottom: 10px;">
+	{% comment %}
+    <div class="text-right col-xs-12" style="font-size: 14px; border-bottom: 1px solid #666; margin-bottom: 10px;">
 		{% with status=object|upcoming_status %}
 			-- {{ status.0 }} --
-			{% if status.1 %}<!-- <h5>({{ status.1 }}) </h5> -->{% endif %}
+			{% if status.1 %}({{ status.1 }}){% endif %}
 		{% endwith %}
 	</div>
+	{% endcomment %}
 	<div class="col-xs-12">
 		{% if cperms.communities.viewupcoming_community %}
 			{% if cperms.communities.viewupcoming_draft or object.upcoming_meeting_is_published %}

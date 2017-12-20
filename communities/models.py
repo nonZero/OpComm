@@ -498,6 +498,5 @@ def set_default_confidental_reasons(sender, instance, created,
                                     dispatch_uid='set_default_confidental_reasons',
                                     **kwargs):
     if created:
-        for reason in settings.OPENCOMMUNITY_DEFAULT_CONFIDENTIAL_REASONS:
-            CommunityConfidentialReason.objects.create(community=instance,
-                                                       title=ugettext(reason))
+        for reason in settings.OPENCOMMITTEE_DEFAULT_CONFIDENTIAL_REASONS:
+            CommunityConfidentialReason.objects.create(community=instance, title=ugettext(reason))

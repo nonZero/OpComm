@@ -156,7 +156,7 @@
                 {% endfor %}
 
             </div>
-            {% if recipient %}
+            {% if recipient and not hide_opt_in %}
                 <div class="unsubscribe" style="text-align: center;margin-top: 10px; margin-bottom: 20px;">
                     <a href="{{ base_url }}{% url 'unsubscribe' recipient.uid %}" target="_blank">
                         {% trans 'Unsubscribe from mailing list' %}

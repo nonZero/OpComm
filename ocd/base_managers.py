@@ -34,7 +34,7 @@ class ConfidentialQuerySetMixin(object):
         elif user.is_superuser:
             return self.all()
 
-        elif user.is_anonymous():
+        elif user.is_anonymous:
             return self.filter(is_confidential=False)
 
         else:
@@ -67,7 +67,7 @@ class ConfidentialSearchQuerySet(SearchQuerySet):
         qs = self._clone()
         if user.is_superuser:
             return qs
-        elif user.is_anonymous():
+        elif user.is_anonymous:
             return qs.filter(is_confidential=False)
         else:
             memberships = user.memberships.filter(community=community)

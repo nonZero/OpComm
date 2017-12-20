@@ -236,7 +236,7 @@ def _async_send_mail(*args, **kwargs):
     return True
 
 
-if not settings.OPENCOMMUNITY_ASYNC_NOTIFICATIONS:
+if not settings.OPENCOMMITTEE_ASYNC_NOTIFICATIONS:
     send_mail = _base_send_mail
 else:
     send_mail = _async_send_mail

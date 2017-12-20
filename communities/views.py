@@ -45,7 +45,7 @@ class CommunityList(ListView):
 
     def get_context_data(self, **kwargs):
         d = super(CommunityList, self).get_context_data(**kwargs)
-        d['version'] = settings.OPENCOMMUNITY_VERSION
+        d['version'] = settings.OPENCOMMITTEE_VERSION
         return d
 
 
@@ -152,6 +152,8 @@ class PublishUpcomingMeetingPreviewView(CommunityModelMixin, DetailView):
             proposals = i.proposals.object_access_control(
                 user=self.request.user, community=self.community)
             d['issue_container'].append({'issue': i, 'proposals': proposals})
+        d['recipient'] = self.request.user
+        d['hide_opt_in'] = True
         return d
 
 
@@ -296,6 +298,7 @@ class ProtocolDraftPreviewView(CommunityModelMixin, DetailView):
         agenda_items = d['object'].draft_agenda(draft_agenda_payload)
         d['meeting_time'] = meeting_time.replace(second=0)
         d['agenda_items'] = agenda_items
+        # d['recipient'] = self.request.user
         return d
 
 

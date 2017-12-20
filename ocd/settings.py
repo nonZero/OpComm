@@ -11,8 +11,8 @@ ADMINS = (
     ('Yaniv Mirel', 'yanivmirel@gmail.com'),
 )
 
-EMAIL_SUBJECT_PREFIX = '[OpenComm] '
-FROM_EMAIL = "noreply@opencomm.org.il"
+EMAIL_SUBJECT_PREFIX = '[OpenCommittee] '
+FROM_EMAIL = "noreply@opencommittee.co.il"
 HOST_URL = "http://localhost:8000"
 
 MANAGERS = ADMINS
@@ -203,28 +203,28 @@ REDIS = {
 
 gettext = lambda s: s
 
-OPENCOMMUNITY_ANALYTICS = {
+OPENCOMMITTEE_ANALYTICS = {
     'ga': {
         'id': 'UA-00000000-0',
         'url': 'domain.com'
     }
 }
 
-OPENCOMMUNITY_DEFAULT_CONFIDENTIAL_REASONS = [
+OPENCOMMITTEE_DEFAULT_CONFIDENTIAL_REASONS = [
     gettext('Privacy'),
     gettext('Commercial'),
     gettext('Security'),
     gettext('Legal')
 ]
 
-OPENCOMMUNITY_ASYNC_NOTIFICATIONS = False
+OPENCOMMITTEE_ASYNC_NOTIFICATIONS = False
 
 version_file = os.path.join(STATIC_ROOT, 'version.txt')
 if os.path.exists(version_file):
     with open(version_file) as f:
-        OPENCOMMUNITY_VERSION = f.read()
+        OPENCOMMITTEE_VERSION = f.read()
 else:
-    OPENCOMMUNITY_VERSION = None
+    OPENCOMMITTEE_VERSION = None
 
 QUEUE_NAME = 'default'
 
