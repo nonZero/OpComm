@@ -1,0 +1,23 @@
+{% load i18n voting_tags humanize %}
+<tr data-id="{{ arg.id }}">
+    <td>
+        {{ arg.created_by }}, {{ arg.created_at|naturaltime }}
+    </td>
+    <td>
+        <p class="arg-comment">{{ arg.comment }}</p>
+    </td>
+    <td>
+        <div class="arguments-opt">
+            {% if arg.created_by == request.user %}
+                <span class="pull-right">
+                    <a class="edit-argument" data-valueurl="{{arg.get_data_url}}" data-url="{{arg.get_edit_url}}" data-toggle="modal" data-target="#editProposalCommentModal">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <form class="delete-argument" method="post" action="{{arg.get_delete_url}}">
+                        <i class="fa fa-trash-o"></i>
+                    </form>
+                </span>
+            {% endif %}
+        </div>
+    </td>
+</tr>

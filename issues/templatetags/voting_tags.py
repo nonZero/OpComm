@@ -3,7 +3,8 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 
-from issues.models import Proposal, ProposalVote, VoteResult, ProposalVoteArgument, ProposalVoteArgumentRanking
+from issues.models import Proposal, ProposalVote, VoteResult, ProposalVoteArgument, ProposalVoteArgumentRanking, \
+    ProposalComment
 from meetings.models import Meeting
 from users.models import OCUser
 
@@ -147,3 +148,8 @@ def user_ranked_argument(argument_id, user_id):
 def user_argued(proposal, user_id):
     user = OCUser.objects.get(pk=user_id)
     return ProposalVoteArgument.objects.filter(proposal_vote__proposal=proposal, created_by=user).exists()
+
+
+@register.filter
+def user_commented(proposal, user_id):
+    return ProposalComment.objects.filter(proposal=proposal, created_by_id=int(user_id)).exists()

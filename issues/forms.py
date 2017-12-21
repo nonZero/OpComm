@@ -201,6 +201,17 @@ class CreateProposalVoteArgumentForm(forms.ModelForm):
         ]
 
 
+class CreateProposalCommentForm(forms.ModelForm):
+    submit_label = _('Add')
+    form_id = "add-comment"
+
+    class Meta:
+        model = models.ProposalComment
+        fields = [
+            'comment',
+        ]
+
+
 class EditProposalVoteArgumentForm(CreateProposalVoteArgumentForm):
     submit_label = _('Save')
     form_id = None

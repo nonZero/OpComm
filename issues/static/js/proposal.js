@@ -71,7 +71,7 @@ function addArgument() {
         });
         e.preventDefault();
     });
-};
+}
 
 // Edit argument
 
@@ -114,6 +114,63 @@ function editArgumentSubmit() {
         e.preventDefault();
     });
 }
+
+// Edit proposal comment
+
+$('#editProposalCommentModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var comment_id = button.parents('tr').data('id');
+    $('#edit-proposal-comment').attr("data-id", comment_id);
+    var url = button.data('url');
+    $('#edit-proposal-comment').attr('action', url);
+    var arg_value_url = button.data('valueurl');
+    $.get(arg_value_url, function (data) {
+        $('#edit_proposal_comment_text').val(data);
+    });
+});
+
+// Ajax update proposal comment form submission.
+$("#edit-proposal-comment-submit").on('click', function (e) {
+    e.preventDefault();
+    var formObj = $('#edit-proposal-comment');
+    var commentId = formObj.data("id");
+    var formURL = formObj.attr("action");
+    var postData = formObj.serializeArray();
+    $('#editProposalCommentModal').modal('hide');
+    $.ajax({
+        url: formURL,
+        type: "POST",
+        data: postData,
+        success: function (data, textStatus, jqXHR) {
+            $("#edit-proposal-comment").get(0).reset();
+            $("tr[data-id='" + commentId + "'] .arg-comment").html(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $("#edit-proposal-comment").get(0).reset();
+            console.log(errorThrown);
+        }
+    });
+});
+
+$("#create-proposal-comment-btn").on('click', function (e) {
+    e.preventDefault();
+    var formObj = $(this).parents('form');
+    var formURL = formObj.attr("action");
+    var postData = formObj.serializeArray();
+    $.ajax({
+        url: formURL,
+        type: "POST",
+        data: postData,
+        success: function (data, textStatus, jqXHR) {
+            formObj.find("textarea").get(0).reset();
+            $(".proposal-comment-table").append(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            formObj.find("textarea").get(0).reset();
+            console.log(errorThrown);
+        }
+    });
+});
 
 // Argument Upvote/Downvote
 

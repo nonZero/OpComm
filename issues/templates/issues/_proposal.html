@@ -1,5 +1,5 @@
 {% load i18n %}
-{% load opencommunity %}
+{% load opencommunity voting_tags %}
 
 <ul class="prop-table proposals{% if proposal.is_open %} open{% endif %}">
   <a href="{{proposal.get_absolute_url}}?m_id={{meeting.id}}{% if siblings %}&s=1{% endif %}" style="display: none;"></a>
@@ -25,7 +25,6 @@
         {% endif %}
         {{proposal.content|userhtml}}
     </li>
-
     {% if proposal.decided %}
         {% if cperms.issues.view_proposal_in_discussion or not proposal.is_open %}
             <li class="check_box{% if proposal.is_confidential %}_confidential{% endif %} {% if proposal.status == proposal.statuses.ACCEPTED %}checked{% if proposal.is_confidential %}_confidential{% endif %}{% endif %}{% if proposal.status == proposal.statuses.REJECTED %}rejected{% if proposal.is_confidential %}_confidential{% endif %}{% endif %}"></li>
@@ -44,4 +43,24 @@
     {% endif %}
     </li>
 </ul>
-
+<div class="proposal-comment">
+    <table class="proposal-comment-table table table-bordered">
+        {% for arg in proposal.get_comments %}
+            {% include 'issues/_proposal_comment.html' %}
+        {% endfor %}
+    </table>
+    {% if not proposal|user_commented:user.id %}
+        <form method="post" action="{% url 'create_proposal_comment' proposal.issue.community_id proposal.id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_comment_{{ proposal.id }}" class="control-label">{% trans "Add comment" %}:</label>
+                <textarea class="form-control" rows="2" id="id_comment_{{ proposal.id }}" name="comment"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="create-proposal-comment-btn" class="btn btn-oc proposal-comment-modal-btn">
+                    {% trans "Submit" %}
+                </button>
+            </div>
+        </form>
+    {% endif %}
+</div>

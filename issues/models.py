@@ -513,6 +513,9 @@ class Proposal(UIDMixin, ConfidentialMixin):
                 not self.issue.community.upcoming_meeting_is_published or \
                 self.issue.community.straw_vote_ended)
 
+    def get_comments(self):
+        return self.proposal_comments.all()
+
     def get_straw_results(self, meeting_id=None):
         """ get straw voting results registered for the given meeting """
         if meeting_id:
@@ -681,6 +684,36 @@ class ProposalVote(models.Model):
     def __str__(self):
         return "%s | %s - %s (%s)" % (
             self.proposal.issue.title, self.proposal.title, self.user.display_name, self.get_value_display())
+
+
+class ProposalComment(models.Model):
+    proposal = models.ForeignKey(Proposal, related_name='proposal_comments', on_delete=models.CASCADE)
+    comment = models.TextField(verbose_name=_("Comment"))
+    created_at = models.DateTimeField(_("Create at"), auto_now_add=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                   related_name="proposal_comments_created",
+                                   on_delete=models.SET_NULL,
+                                   blank=True, null=True,
+                                   verbose_name=_("Created by"))
+
+    class Meta:
+        verbose_name = _("Proposal comment")
+        verbose_name_plural = _("Proposal comments")
+
+    def __str__(self):
+        return self.comment
+
+    @models.permalink
+    def get_delete_url(self):
+        return "delete_proposal_comment", (self.proposal.issue.community.id, self.id)
+
+    @models.permalink
+    def get_edit_url(self):
+        return "edit_proposal_comment", (self.proposal.issue.community.id, self.id)
+
+    @models.permalink
+    def get_data_url(self):
+        return "get_proposal_comment_value", (self.proposal.issue.community.id, self.id)
 
 
 class ProposalVoteArgument(models.Model):

@@ -13,9 +13,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from issues import models, forms
 from issues.forms import CreateIssueForm, CreateProposalForm, EditProposalForm, \
     UpdateIssueForm, EditProposalTaskForm, AddAttachmentForm, \
-    UpdateIssueAbstractForm, CreateProposalVoteArgumentForm
+    UpdateIssueAbstractForm, CreateProposalVoteArgumentForm, CreateProposalCommentForm
 from issues.models import ProposalType, Issue, IssueStatus, ProposalVote, \
-    Proposal, ProposalVoteBoard, ProposalVoteValue, VoteResult, ProposalVoteArgument, ProposalVoteArgumentRanking
+    Proposal, ProposalVoteBoard, ProposalVoteValue, VoteResult, ProposalVoteArgument, ProposalVoteArgumentRanking, \
+    ProposalComment
 from meetings.models import Meeting
 from oc_util.templatetags.opencommunity import minutes, board_voters_on_proposal
 from ocd.base_views import CommunityMixin, AjaxFormView, json_response
@@ -969,6 +970,28 @@ class ProposalVoteArgumentCreateView(CreateView):
             return render(request, 'issues/_con_argument.html', context)
 
 
+class ProposalCommentCreateView(CreateView):
+    model = models.ProposalComment
+    form_class = CreateProposalCommentForm
+    template_name = 'issues/proposal_comment_form.html'
+
+    def get_success_url(self):
+        return ""
+
+    def post(self, request, *args, **kwargs):
+        form = forms.CreateProposalCommentForm(request.POST)
+        if not form.is_valid():
+            return HttpResponseBadRequest()
+
+        proposal = Proposal.objects.get(pk=self.kwargs['proposal_id'])
+        a = ProposalComment.objects.create(comment=form.cleaned_data['comment'], created_by=request.user,
+                                           proposal=proposal)
+        self.object = a
+        context = self.get_context_data(arg=a, proposal=proposal)
+
+        return render(request, 'issues/_proposal_comment.html', context)
+
+
 class ProposalMoreArgumentsView(DetailView):
     model = models.Proposal
     template_name = 'issues/_more_arguments_box.html'
@@ -1006,8 +1029,33 @@ class ProposalVoteArgumentUpdateView(UpdateView):
             return HttpResponse("")
 
 
+class ProposalCommentUpdateView(UpdateView):
+    model = models.ProposalComment
+    fields = ['comment', ]
+
+    def post(self, request, *args, **kwargs):
+        a = self.get_object()
+        if request.POST.get('comment', None):
+            a.comment = request.POST.get('comment')
+            a.save()
+            return HttpResponse(a.comment)
+        else:
+            return HttpResponse("")
+
+
 class ProposalVoteArgumentDeleteView(DeleteView):
     model = models.ProposalVoteArgument
+    success_url = ""
+
+    def post(self, request, *args, **kwargs):
+        o = self.get_object()
+        arg_id = o.id
+        o.delete()
+        return HttpResponse(arg_id)
+
+
+class ProposalCommentDeleteView(DeleteView):
+    model = models.ProposalComment
     success_url = ""
 
     def post(self, request, *args, **kwargs):
@@ -1021,6 +1069,12 @@ def get_argument_value(request, community_id, arg_id):
     """ Return the value of the argument for editing """
     arg_value = models.ProposalVoteArgument.objects.get(pk=arg_id)
     return HttpResponse(arg_value.argument)
+
+
+def get_proposal_comment_value(request, community_id, arg_id):
+    """ Return the value of the proposal comment for editing """
+    arg_value = models.ProposalComment.objects.get(pk=arg_id)
+    return HttpResponse(arg_value.comment)
 
 
 class ChangeBoardVoteStatusView(ProposalMixin, UpdateView):
