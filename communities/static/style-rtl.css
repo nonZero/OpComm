@@ -2576,9 +2576,17 @@ label[for=id_proposal-confidential_reason] {
 
 .proposal-comment {
     background: #fff;
-    /*padding: 5px 15px;*/
-    /*border: 1px solid #ccc;*/
-    /*border-top: 0;*/
+}
+
+#proposal-detail .proposal-comment {
+    border-top: 1px solid #ccc;
+}
+
+.proposal-comment-form {
+    background: #fff;
+    padding: 5px 15px;
+    border: 1px solid #ccc;
+    border-top: 0;
 }
 
 .proposal-comment .proposal-comment-table {

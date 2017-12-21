@@ -162,11 +162,12 @@ $("#create-proposal-comment-btn").on('click', function (e) {
         type: "POST",
         data: postData,
         success: function (data, textStatus, jqXHR) {
-            formObj.find("textarea").get(0).reset();
+            formObj.find("textarea").val('');
+            formObj.hide();
             $(".proposal-comment-table").append(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            formObj.find("textarea").get(0).reset();
+            formObj.find("textarea").val('');
             console.log(errorThrown);
         }
     });

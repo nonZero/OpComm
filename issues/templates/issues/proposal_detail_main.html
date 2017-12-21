@@ -113,6 +113,27 @@
 		    {% endif %}
 		</h5>
 	</div>
+    <div class="proposal-comment">
+        <table class="proposal-comment-table table table-bordered">
+            {% for arg in object.get_comments %}
+                {% include 'issues/_proposal_comment.html' %}
+            {% endfor %}
+        </table>
+        {% if not object|user_commented:user.id %}
+            <form class="proposal-comment-form" method="post" action="{% url 'create_proposal_comment' object.issue.community_id object.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_comment_{{ object.id }}" class="control-label">{% trans "Add comment" %}:</label>
+                    <textarea class="form-control" rows="2" id="id_comment_{{ object.id }}" name="comment"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" id="create-proposal-comment-btn" class="btn btn-oc proposal-comment-modal-btn">
+                        {% trans "Submit" %}
+                    </button>
+                </div>
+            </form>
+        {% endif %}
+    </div>
 </div>
     {% with proposal=object c=proposal.issue.community %}
         {% if proposal.can_straw_vote and cperms.issues.vote and user|member_of:c %}
@@ -171,4 +192,37 @@
     </form>
     {% endif %}
 </div>
+</div>
+<div class="modal fade" id="editProposalCommentModal" tabindex="-1" role="dialog" aria-labelledby="proposalCommentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="proposalCommentModalLabel">{% trans "Edit comment" %}</h4>
+            </div>
+            <div class="modal-body">
+                <form id="edit-proposal-comment" method="post" action="">
+                    <div class="form-group">
+                        <label class="control-label">{% trans "Argument" %}</label>
+                        <textarea id="edit_proposal_comment_text" class="form-control" rows="4" name="comment"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="col-xs-5 col-xs-offset-1 col-sm-3 col-sm-offset-3">
+                    <button type="button" class="btn btn-default btn-block" data-dismiss="modal">
+                        {% trans "Cancel" %}
+                    </button>
+                </div>
+                <div class="col-xs-5 col-sm-3">
+                    <button type="submit" id="edit-proposal-comment-submit" class="btn btn-success btn-block">
+                        {% trans "Confirm" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

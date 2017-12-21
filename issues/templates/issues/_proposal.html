@@ -50,7 +50,7 @@
         {% endfor %}
     </table>
     {% if not proposal|user_commented:user.id %}
-        <form method="post" action="{% url 'create_proposal_comment' proposal.issue.community_id proposal.id %}">
+        <form class="proposal-comment-form" method="post" action="{% url 'create_proposal_comment' proposal.issue.community_id proposal.id %}">
             {% csrf_token %}
             <div class="form-group">
                 <label for="id_comment_{{ proposal.id }}" class="control-label">{% trans "Add comment" %}:</label>
