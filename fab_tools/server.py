@@ -53,8 +53,6 @@ def update_server_pkgs():
 def install_server_pkgs():
     update_server_pkgs()
     pkgs = APT_PACKAGES
-    if getattr(env, 'ocean', False):
-        pkgs = [p for p in pkgs if 'postgres' not in p]
     run("sudo apt-get -q install -y %s" % " ".join(pkgs), pty=False)
 
 
