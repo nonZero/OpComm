@@ -43,24 +43,26 @@
     {% endif %}
     </li>
 </ul>
-<div class="proposal-comment">
-    <table class="proposal-comment-table table table-bordered">
-        {% for arg in proposal.get_comments %}
-            {% include 'issues/_proposal_comment.html' %}
-        {% endfor %}
-    </table>
-    {% if not proposal|user_commented:user.id %}
-        <form class="proposal-comment-form" method="post" action="{% url 'create_proposal_comment' proposal.issue.community_id proposal.id %}">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="id_comment_{{ proposal.id }}" class="control-label">{% trans "Add comment" %}:</label>
-                <textarea class="form-control" rows="2" id="id_comment_{{ proposal.id }}" name="comment"></textarea>
-            </div>
-            <div class="form-group">
-                <button type="submit" id="create-proposal-comment-btn" class="btn btn-oc proposal-comment-modal-btn">
-                    {% trans "Submit" %}
-                </button>
-            </div>
-        </form>
-    {% endif %}
-</div>
+{% if cperms.issues.comment_proposal and proposal.issue.voteable %}
+    <div class="proposal-comment">
+        <table class="proposal-comment-table table table-bordered">
+            {% for arg in proposal.get_comments %}
+                {% include 'issues/_proposal_comment.html' %}
+            {% endfor %}
+        </table>
+        {% if not proposal|user_commented:user.id %}
+            <form class="proposal-comment-form" method="post" action="{% url 'create_proposal_comment' proposal.issue.community_id proposal.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_comment_{{ proposal.id }}" class="control-label">{% trans "Add comment" %}:</label>
+                    <textarea class="form-control" rows="2" id="id_comment_{{ proposal.id }}" name="comment"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" id="create-proposal-comment-btn" class="btn btn-oc proposal-comment-modal-btn">
+                        {% trans "Submit" %}
+                    </button>
+                </div>
+            </form>
+        {% endif %}
+    </div>
+{% endif %}

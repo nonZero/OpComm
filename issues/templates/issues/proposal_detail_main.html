@@ -113,27 +113,29 @@
 		    {% endif %}
 		</h5>
 	</div>
-    <div class="proposal-comment">
-        <table class="proposal-comment-table table table-bordered">
-            {% for arg in object.get_comments %}
-                {% include 'issues/_proposal_comment.html' %}
-            {% endfor %}
-        </table>
-        {% if not object|user_commented:user.id %}
-            <form class="proposal-comment-form" method="post" action="{% url 'create_proposal_comment' object.issue.community_id object.id %}">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="id_comment_{{ object.id }}" class="control-label">{% trans "Add comment" %}:</label>
-                    <textarea class="form-control" rows="2" id="id_comment_{{ object.id }}" name="comment"></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit" id="create-proposal-comment-btn" class="btn btn-oc proposal-comment-modal-btn">
-                        {% trans "Submit" %}
-                    </button>
-                </div>
-            </form>
-        {% endif %}
-    </div>
+    {% if cperms.issues.comment_proposal and object.issue.voteable %}
+        <div class="proposal-comment">
+            <table class="proposal-comment-table table table-bordered">
+                {% for arg in object.get_comments %}
+                    {% include 'issues/_proposal_comment.html' %}
+                {% endfor %}
+            </table>
+            {% if not object|user_commented:user.id %}
+                <form class="proposal-comment-form" method="post" action="{% url 'create_proposal_comment' object.issue.community_id object.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_comment_{{ object.id }}" class="control-label">{% trans "Add comment" %}:</label>
+                        <textarea class="form-control" rows="2" id="id_comment_{{ object.id }}" name="comment"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="create-proposal-comment-btn" class="btn btn-oc proposal-comment-modal-btn">
+                            {% trans "Submit" %}
+                        </button>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    {% endif %}
 </div>
     {% with proposal=object c=proposal.issue.community %}
         {% if proposal.can_straw_vote and cperms.issues.vote and user|member_of:c %}

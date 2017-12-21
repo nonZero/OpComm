@@ -27,6 +27,7 @@ class DefaultRoles(object):
 
     permissions[OBSERVER] = permissions[VIEWER] + [
         'issues.vote',
+        'issues.comment_proposal',
         'issues.proposal_board_vote_self',
         'issues.vote_ranking',
     ]
