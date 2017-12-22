@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Open Community\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-21 20:01+0200\n"
-"PO-Revision-Date: 2017-12-21 20:02+0200\n"
+"POT-Creation-Date: 2017-12-22 10:21+0200\n"
+"PO-Revision-Date: 2017-12-22 10:22+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -279,6 +279,7 @@ msgstr "תגובות להתייחסות"
 
 #: models.py:721 templates/issues/_issue_main.html:202
 #: templates/issues/_vote_arguments.html:99
+#: templates/issues/proposal_detail_main.html:214
 msgid "Argument"
 msgstr "טיעון"
 
@@ -353,12 +354,14 @@ msgstr "לאחר הוספת טיעון לא ניתן לשנות את בחירת�
 #: templates/issues/_issue_main.html:210
 #: templates/issues/_vote_arguments.html:107
 #: templates/issues/issueattachment_form.html:22
+#: templates/issues/proposal_detail_main.html:222
 msgid "Cancel"
 msgstr "ביטול"
 
 #: templates/issues/_argument_action_modal.html:33
 #: templates/issues/_issue_main.html:215
 #: templates/issues/_vote_arguments.html:112
+#: templates/issues/proposal_detail_main.html:227
 msgid "Confirm"
 msgstr "אישור"
 
@@ -424,6 +427,7 @@ msgid "Save and go to next issue"
 msgstr "שמור ועבור לנושא הבא"
 
 #: templates/issues/_issue_main.html:197
+#: templates/issues/proposal_detail_main.html:209
 msgid "Edit comment"
 msgstr "ערוך תגובה"
 
@@ -459,13 +463,15 @@ msgctxt "rule creation date"
 msgid "Date"
 msgstr "תאריך"
 
-#: templates/issues/_proposal.html:56
+#: templates/issues/_proposal.html:59
+#: templates/issues/proposal_detail_main.html:130
 msgid "Add comment"
 msgstr "הוסף תגובה"
 
-#: templates/issues/_proposal.html:61 templates/issues/_vote_arguments.html:41
+#: templates/issues/_proposal.html:64 templates/issues/_vote_arguments.html:41
 #: templates/issues/_vote_arguments.html:77 templates/issues/issue_list.html:70
 #: templates/issues/issue_list.html:150
+#: templates/issues/proposal_detail_main.html:135
 msgid "Submit"
 msgstr "שלח"
 
@@ -734,29 +740,29 @@ msgstr "בטל השלמה"
 msgid "Complete task"
 msgstr "השלם משימה"
 
-#: templates/issues/proposal_detail_main.html:124
+#: templates/issues/proposal_detail_main.html:149
 msgid "Vote ended"
 msgstr "הצבעה נסגרה"
 
-#: templates/issues/proposal_detail_main.html:129
+#: templates/issues/proposal_detail_main.html:154
 msgid "Straw vote result"
 msgstr "תוצאות הצבעת שבשבת"
 
-#: templates/issues/proposal_detail_main.html:146
-#: templates/issues/proposal_detail_main.html:153
+#: templates/issues/proposal_detail_main.html:171
+#: templates/issues/proposal_detail_main.html:178
 msgid "Vote by the"
 msgstr "הצבעה על ידי"
 
-#: templates/issues/proposal_detail_main.html:146
-#: templates/issues/proposal_detail_main.html:153
+#: templates/issues/proposal_detail_main.html:171
+#: templates/issues/proposal_detail_main.html:178
 msgid "Board"
 msgstr "ועד"
 
-#: templates/issues/proposal_detail_main.html:163
+#: templates/issues/proposal_detail_main.html:188
 msgid "Accept proposal"
 msgstr "קבל את ההתייחסות"
 
-#: templates/issues/proposal_detail_main.html:168
+#: templates/issues/proposal_detail_main.html:193
 msgid "Reject proposal"
 msgstr "דחה התייחסות"
 

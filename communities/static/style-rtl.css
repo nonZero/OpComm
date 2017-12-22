@@ -1556,12 +1556,14 @@ form.delete-invitation {
     border: 1px solid;
 }
 
+.delete-proposal-comment,
 .edit-argument,
 .delete-argument {
     display: inline;
     cursor: pointer;
 }
 
+.delete-proposal-comment i,
 .edit-argument i,
 .delete-argument i {
     color: #6C6C6E;

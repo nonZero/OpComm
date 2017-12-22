@@ -93,12 +93,11 @@ class MembershipList(MembershipMixin, ListView):
         d = super(MembershipList, self).get_context_data(**kwargs)
 
         d['invites'] = Invitation.objects.filter(community=self.community)
-        d['form'] = InvitationForm(initial={'message':
-                                                Invitation.DEFAULT_MESSAGE %
-                                                self.community.get_board_name()})
-        d['board_list'] = Membership.objects.board().filter(community=self.community)
-        d['member_list'] = Membership.objects.none_board().filter(community=self.community)
-        d['board_name'] = self.community.board_name
+        d['form'] = InvitationForm(initial={'message': Invitation.DEFAULT_MESSAGE % _('The board')})
+        d['members_list'] = Membership.objects.filter(community=self.community)
+        # d['board_list'] = Membership.objects.board().filter(community=self.community)
+        # d['member_list'] = Membership.objects.none_board().filter(community=self.community)
+        # d['board_name'] = self.community.board_name
 
         return d
 
@@ -114,6 +113,7 @@ class MembershipList(MembershipMixin, ListView):
         if v_err:
             return v_err
 
+        form.instance.default_group_name = DefaultGroups.BOARD
         form.instance.community = self.community
         form.instance.created_by = request.user
 

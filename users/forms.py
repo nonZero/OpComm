@@ -15,15 +15,15 @@ class InvitationForm(forms.ModelForm):
         fields = (
             'name',
             'email',
-            'default_group_name',
+            # 'default_group_name',
             'message',
         )
 
         widgets = {
-            'default_group_name': forms.Select,
-            'name': forms.TextInput,
-            'email': forms.EmailInput,
-            'message': HTMLArea,
+            # 'default_group_name': forms.Select,
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'message': HTMLArea(attrs={'class': 'form-control'}),
         }
 
     def clean_email(self):
@@ -31,15 +31,19 @@ class InvitationForm(forms.ModelForm):
 
 
 class QuickSignupForm(forms.ModelForm):
-    password1 = forms.CharField(label=_('Password'), widget=forms.PasswordInput)
-    password2 = forms.CharField(label=_('Password confirmation'), widget=forms.PasswordInput)
+    password1 = forms.CharField(label=_('Password'), widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password2 = forms.CharField(label=_('Password confirmation'),
+                                widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = OCUser
 
-        fields = (
+        fields = [
             'display_name',
-        )
+        ]
+        widgets = {
+            'display_name': forms.TextInput(attrs={'class': 'form-control'})
+        }
 
     def clean_password2(self):
         # Check that the two password entries match

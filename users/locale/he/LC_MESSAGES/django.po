@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Open Community\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-21 20:00+0200\n"
-"PO-Revision-Date: 2017-12-14 12:26+0200\n"
+"POT-Creation-Date: 2017-12-22 09:43+0200\n"
+"PO-Revision-Date: 2017-12-22 09:44+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -31,19 +31,19 @@ msgstr ""
 "סיסמאות אינם נשמרות כטקסט, אז אין אפשרות לראות את הסיסמא של המשתמש, אבל ניתן "
 "לשנות סיסמא בעזרת <a href=\"password/\">הקישור הזה</a>."
 
-#: default_roles.py:100 default_roles_old.py:102
+#: default_roles.py:101 default_roles_old.py:102
 msgid "member"
 msgstr "חבר"
 
-#: default_roles.py:101 default_roles_old.py:103
+#: default_roles.py:102 default_roles_old.py:103
 msgid "board"
 msgstr "ועד"
 
-#: default_roles.py:102 default_roles_old.py:104
+#: default_roles.py:103 default_roles_old.py:104
 msgid "secretary"
 msgstr "מזכיר"
 
-#: default_roles.py:103 default_roles_old.py:105
+#: default_roles.py:104 default_roles_old.py:105
 msgid "chairman"
 msgstr "יושב ראש"
 
@@ -58,11 +58,11 @@ msgstr "אנא הכנס %(username)s וסיסמא תיקניים. שים לב ל
 msgid "Password confirmation"
 msgstr "אימות סיסמא"
 
-#: forms.py:49
+#: forms.py:53
 msgid "Passwords don't match"
 msgstr "סיסמא לא תואמת"
 
-#: forms.py:90
+#: forms.py:94
 msgid "Upload CSV file to import"
 msgstr "העלאת קובץ csv"
 
@@ -191,8 +191,8 @@ msgid ""
 "you'll be able to discuss and influence them."
 msgstr ""
 "המערכת תאפשר לך מעורבות בתהליך קבלת ההחלטות של %s.\n"
-"אחרי אישור ההצטרפות ניתן לראות את הנושאים לדיון, את סדר היום לישיבה הקרובה, "
-"ואת סיכום ההחלטות מהישיבות הקודמות, ובעתיד ניתן יהיה גם לדון ולהשפיע עליהם."
+"אחרי אישור ההצטרפות ניתן לראות את הנושאים לדיון, את סדר היום לשבוע הקרוב, את "
+"ההתייחסויות לנושאים, וגם להביע התייחסות לנושאים."
 
 #: models.py:310
 #, python-format
@@ -295,9 +295,9 @@ msgstr "הרשמה מהירה"
 msgid "email"
 msgstr "דואל"
 
-#: templates/users/invitation_detail.html:66
-msgid "Join DemOS"
-msgstr "הצטרף לקהילה פתוחה"
+#: templates/users/invitation_detail.html:67
+msgid "Join Open Committee"
+msgstr "הצטרף למערכת"
 
 #: templates/users/member_profile.html:13
 msgid "No data available"
@@ -376,27 +376,27 @@ msgid "of decisions voted against were rejected"
 msgstr "מההחלטות בהם הצביע 'נגד' נדחו"
 
 #: templates/users/membership_list.html:6
-#: templates/users/membership_list.html:34
+#: templates/users/membership_list.html:22
 msgid "Members"
 msgstr "חברים"
 
-#: templates/users/membership_list.html:51
+#: templates/users/membership_list.html:69
 msgid "No members."
 msgstr "אין חברים בקהילה"
 
-#: templates/users/membership_list.html:59
+#: templates/users/membership_list.html:77
 msgid "New invitation"
 msgstr "הזמנה חדשה"
 
-#: templates/users/membership_list.html:63
+#: templates/users/membership_list.html:82
 msgid "Invite"
 msgstr "הזמן"
 
-#: templates/users/membership_list.html:66
+#: templates/users/membership_list.html:85
 msgid "Open invitations"
 msgstr "הזמנות פתוחות"
 
-#: tests/invitation_test.py:80 views.py:111
+#: tests/invitation_test.py:80 views.py:110
 msgid "Form error. Please supply a valid email."
 msgstr "יש בעיה בטופס. אנא בדוק את כתובת האימייל"
 
@@ -407,6 +407,10 @@ msgstr "משתמש זה כבר הוזמן לקהילה"
 #: tests/invitation_test.py:99 views.py:80
 msgid "This user already a member of this community."
 msgstr "משתמש זה כבר חבר בקהילה"
+
+#: views.py:96
+msgid "The board"
+msgstr "הועדה"
 
 #: views.py:151
 msgid "Email address [{}] has been successfully removed from out list"
@@ -421,11 +425,11 @@ msgstr "אופס. משהו השתבש. אנה נסה שוב."
 msgid "%d Invitations sent"
 msgstr "%d הזמנות נשלחו"
 
+#~ msgid "Join DemOS"
+#~ msgstr "הצטרף לקהילה פתוחה"
+
 #~ msgid "Board"
 #~ msgstr "ועד"
-
-#~ msgid "Join Open Community"
-#~ msgstr "הצטרף לקהילה פתוחה"
 
 #~ msgid "Pro"
 #~ msgstr "בעד"

@@ -241,7 +241,7 @@ def create_code(length=CODE_LENGTH):
     """
     Creates a random code of lowercase letters and numbers
     """
-    return "".join(random.choice(CODE_CHARS) for _x in xrange(length))
+    return "".join(random.choice(CODE_CHARS) for _x in range(length))
 
 
 class EmailStatus(object):

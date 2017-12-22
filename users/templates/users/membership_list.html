@@ -19,6 +19,19 @@ id="members-list"
 {% if object_list %}
 
 <div class="col-xs-12 col-sm-6">
+	<h2>{% trans 'Members' %}</h2>
+	<ul class="list-group">
+		{% for member in members_list %}
+		<li class="list-group-item">
+			{% comment %}<a href="{{ member.get_absolute_url }}" style="color: #333333;">{% endcomment %}
+				{{ member.user.display_name }}
+				{% comment %}({{ member.get_default_group_name_display }}){% endcomment %}<br />
+				<span style="font-size: 12px;">{{ member.user.email }}</span>
+			{% comment %}</a>{% endcomment %}
+		</li>
+		{% endfor %}
+	</ul>
+    {% comment %}
 	<h2>{{ board_name }}</h2>
 	<ul class="list-group">
 		{% for board in board_list %}
@@ -43,6 +56,7 @@ id="members-list"
 		</li>
 		{% endfor %}
 	</ul>
+	{% endcomment %}
 </div>
 
 {% else %}
@@ -60,7 +74,8 @@ id="members-list"
 			<form method="post" id="invite-form">
 				{% csrf_token %}
 				{{form}}
-				<input class="btn btn-oc" type="submit" value="{% trans "Invite" %}">
+                <br>
+                <input class="btn btn-oc" type="submit" value="{% trans "Invite" %}">
 			</form>
 		</li>
         <h2{% if not invites.count %} class="hide" {% endif %}> {% trans "Open invitations" %} </h2>

@@ -105,8 +105,8 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-whoosh_index/
+/whoosh_index/
 server.sh
-static/
+/static/
 .idea/workspace.xml
-uploads/
+/uploads/

@@ -115,6 +115,24 @@ function editArgumentSubmit() {
     });
 }
 
+$("body").on('click', ".delete-proposal-comment", function (e) {
+    var formURL = $(this).attr("action");
+    var postData = $(this).serializeArray();
+    $.ajax({
+        url: formURL,
+        type: "POST",
+        data: postData,
+        success: function (data, textStatus, jqXHR) {
+            window.location.reload();
+           // $("tr[data-id='" + data + "']").remove();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+        }
+    });
+    e.preventDefault();
+});
+
 // Edit proposal comment
 
 $('#editProposalCommentModal').on('show.bs.modal', function (event) {
@@ -130,7 +148,7 @@ $('#editProposalCommentModal').on('show.bs.modal', function (event) {
 });
 
 // Ajax update proposal comment form submission.
-$("#edit-proposal-comment-submit").on('click', function (e) {
+$("body").on('click', "#edit-proposal-comment-submit", function (e) {
     e.preventDefault();
     var formObj = $('#edit-proposal-comment');
     var commentId = formObj.data("id");
@@ -152,7 +170,7 @@ $("#edit-proposal-comment-submit").on('click', function (e) {
     });
 });
 
-$("#create-proposal-comment-btn").on('click', function (e) {
+$(".create-proposal-comment-btn").on('click', function (e) {
     e.preventDefault();
     var formObj = $(this).parents('form');
     var formURL = formObj.attr("action");
@@ -164,7 +182,7 @@ $("#create-proposal-comment-btn").on('click', function (e) {
         success: function (data, textStatus, jqXHR) {
             formObj.find("textarea").val('');
             formObj.hide();
-            $(".proposal-comment-table").append(data);
+            formObj.siblings(".proposal-comment-table").find("tbody").append(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             formObj.find("textarea").val('');
