@@ -249,6 +249,17 @@ class StartMeetingView(EditUpcomingMeetingParticipantsView):
             c.sum_vote_results()
 
 
+class NewStartMeetingView(EditUpcomingMeetingParticipantsView):
+    def post(self, request, *args, **kwargs):
+        c = self.community
+        if not c.upcoming_meeting_started:
+            c.upcoming_meeting_started = True
+            c.voting_ends_at = timezone.now().replace(second=0)
+            c.save()
+            c.sum_vote_results()
+        return redirect(c)
+
+
 class EndMeetingView(CommunityModelMixin, SingleObjectMixin, View):
     def post(self, request, *args, **kwargs):
         c = self.community

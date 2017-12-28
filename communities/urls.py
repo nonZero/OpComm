@@ -5,7 +5,8 @@ from communities import views
 urlpatterns = [
     path('', views.UpcomingMeetingView.as_view(), name='community'),
     path('upcoming/publish/', views.PublishUpcomingView.as_view(), name="upcoming_publish"),
-    path('upcoming/start/', views.StartMeetingView.as_view(), name="upcoming_start"),
+    # path('upcoming/start/', views.StartMeetingView.as_view(), name="upcoming_start"),
+    path('upcoming/start/', views.NewStartMeetingView.as_view(), name="upcoming_start"),
     path('upcoming/end/', views.EndMeetingView.as_view(), name="upcoming_end"),
     path('edit-summary/', views.EditUpcomingSummaryView.as_view(), name="upcoming_edit_summary"),
     path('upcoming/publish/preview/', views.PublishUpcomingMeetingPreviewView.as_view(),

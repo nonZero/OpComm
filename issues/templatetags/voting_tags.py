@@ -7,6 +7,7 @@ from issues.models import Proposal, ProposalVote, VoteResult, ProposalVoteArgume
     ProposalComment
 from meetings.models import Meeting
 from users.models import OCUser
+from django.utils.translation import ugettext_lazy as _
 
 register = template.Library()
 
@@ -32,19 +33,31 @@ def vote_percentage(proposal):
 @register.simple_tag(takes_context=True)
 def user_votes_on_issue(context):
     issue = context['i']
-    user_id = context['user'].id
     proposals = Proposal.objects.open().filter(issue_id=issue.id)
-    votes_cnt = ProposalVote.objects.filter(
-        proposal__in=proposals,
-        user_id=user_id).count()
     if proposals.count() == 0:
         return mark_safe("<span></span>")
-    elif votes_cnt == proposals.count():
-        return mark_safe("<span class='badge no-vote-badge'>{0}/{1}</span>".format(votes_cnt, proposals.count()))
+    elif proposals.count() == 1:
+        return mark_safe("<span class='badge vote-badge'>1 {}</span>".format(_('Proposal')))
     else:
-        return mark_safe("<span class='badge vote-badge'>{0}/{1}</span>".format(votes_cnt, proposals.count()))
+        return mark_safe("<span class='badge vote-badge'>{0} {1}</span>".format(proposals.count(), _('Proposals')))
 
 
+# @register.simple_tag(takes_context=True)
+# def user_votes_on_issue(context):
+#     issue = context['i']
+#     user_id = context['user'].id
+#     proposals = Proposal.objects.open().filter(issue_id=issue.id)
+#     votes_cnt = ProposalVote.objects.filter(
+#         proposal__in=proposals,
+#         user_id=user_id).count()
+#     if proposals.count() == 0:
+#         return mark_safe("<span></span>")
+#     elif votes_cnt == proposals.count():
+#         return mark_safe("<span class='badge no-vote-badge'>{0}/{1}</span>".format(votes_cnt, proposals.count()))
+#     else:
+#         return mark_safe("<span class='badge vote-badge'>{0}/{1}</span>".format(votes_cnt, proposals.count()))
+#
+#
 @register.filter
 def prev_straw_results_link(proposal, meeting_id=None):
     link_args = {

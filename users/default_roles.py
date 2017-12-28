@@ -22,6 +22,7 @@ class DefaultRoles(object):
         'meetings.view_meeting',
         'issues.viewopen_issue',
         'issues.viewopen_proposal',
+        'issues.viewcomment_proposal',
         'communities.viewupcoming_community',
     ]
 

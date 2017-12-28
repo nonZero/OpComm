@@ -1517,7 +1517,7 @@ form.delete-invitation {
     border-right: 1px solid #d8e0df;
     border-left: 1px solid #d8e0df;
     border-bottom: 1px solid #d8e0df;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
     padding: 10px 0;
 }
 
@@ -1561,6 +1561,14 @@ form.delete-invitation {
 .delete-argument {
     display: inline;
     cursor: pointer;
+    color: #333;
+}
+
+.delete-proposal-comment:hover,
+.edit-argument:hover,
+.delete-argument:hover {
+    color: #333;
+    text-decoration: none;
 }
 
 .delete-proposal-comment i,
@@ -2578,6 +2586,7 @@ label[for=id_proposal-confidential_reason] {
 
 .proposal-comment {
     background: #fff;
+    margin-bottom: 20px;
 }
 
 #proposal-detail .proposal-comment {
@@ -2591,8 +2600,56 @@ label[for=id_proposal-confidential_reason] {
     border-top: 0;
 }
 
-.proposal-comment .proposal-comment-table {
+.proposal-comment .proposal-comment-list {
     margin-bottom: 0;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-top: 0;
+}
+
+.proposal-comment .proposal-comment-list h3 {
+    margin: 0 0 10px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(34, 36, 38, .15);
+    color: rgba(0, 0, 0, .87);
+    font-size: 20px;
+}
+
+.single-comment {
+    margin: 0 0 .5em;
+    padding: 0 0 .5em;
+    line-height: 1.2;
+}
+
+.single-comment .name-date {
+    font-weight: bold;
+    color: rgba(0, 0, 0, .87);
+    font-size: 1em;
+}
+
+.single-comment .name-date span {
+    color: rgba(0, 0, 0, .4);
+    font-weight: normal;
+    font-size: .875em;
+}
+
+.prop-title .name-date {
+    font-weight: normal;
+    color: rgba(0, 0, 0, .87);
+    font-size: 13px;
+}
+
+.prop-title .name-date span {
+    color: rgba(0, 0, 0, .4);
+    font-size: .875em;
+}
+
+p.arg-comment {
+    margin: .25em 0 .5em;
+    font-size: 1em;
+    word-wrap: break-word;
+    color: rgba(0, 0, 0, .87);
+    line-height: 1.3;
 }
 
 /* Medium devices (desktops, 992px and up) */

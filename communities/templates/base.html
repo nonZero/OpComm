@@ -109,6 +109,12 @@
         {% if LANGUAGE_CODE == 'he' %}
             <script src="{% static 'bootstrap-wysihtml5/locales/bootstrap-wysihtml5.he-IL.js' %}"></script>
         {% endif %}
+        <script src="{% static 'js/accessibility_pro_group255.js' %}" type="text/javascript"></script>
+        <script type="text/javascript">
+            accessibility_rtl = true;
+            pixel_from_side = 20;
+            pixel_from_start = 55;
+        </script>
         {% block scripts %}
         {% endblock %}
         <script>

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load i18n highlight opencommunity %}
+{% load i18n highlight opencommunity humanize %}
 
 {% block extrahead %}
     <link href="{{ STATIC_URL }}search/results_page.css" rel="stylesheet">
@@ -24,7 +24,7 @@
 				    <a href="{{result.object.get_absolute_url}}" style="display: none;"></a>
 				    {% if result.content_type == 'issues.proposal' %}<li class="drag-icon {% if result.object.type == 1 %}task-icon{% elif result.object.type == 2 %}rule-icon{% elif result.object.type == 3 %}general-icon{% endif %}"</li>{% endif %}
 				    <li class="prop-title">
-				    	{{result.object.title}}
+				    	{{result.object.title}} <span class="name-date">{{ result.object.created_by }}, <small>{{ result.object.created_at|naturaltime }}</small></span>
 				    </li>
 				    <li class="prop-content">
 				        {% if result.object.type == 1 %}

@@ -68,6 +68,18 @@
                 <div class="filter-meeting-{{ai.meeting.id}} filter">
                     {% for proposal in ai.proposals|dictsort:"created_at" %}
                         {% include 'issues/_proposal.html' %}
+                        {% if cperms.issues.viewcomment_proposal %}
+                            <div class="proposal-comment clear">
+                                <div class="proposal-comment-list{% if not proposal.get_comments %} hide{% endif %}">
+                                    {% if proposal.get_comments %}
+                                        <h3>{% trans 'Comments' %}</h3>
+                                    {% endif %}
+                                    {% for arg in proposal.get_comments %}
+                                        {% include 'issues/_proposal_comment.html' %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
             {% endif %}
@@ -122,6 +134,32 @@
 		            </div>
                 {% endcomment %}
         		{% endif %}
+                {% if cperms.issues.viewcomment_proposal and proposal.issue.voteable %}
+                    <div class="proposal-comment clear">
+                        <div class="proposal-comment-list{% if not proposal.get_comments %} hide{% endif %}">
+                            {% if proposal.get_comments %}
+                                <h3>{% trans 'Comments' %}</h3>
+                            {% endif %}
+                            {% for arg in proposal.get_comments %}
+                                {% include 'issues/_proposal_comment.html' %}
+                            {% endfor %}
+                        </div>
+                        {% if cperms.issues.comment_proposal %}
+                            <form class="proposal-comment-form" method="post" action="{% url 'create_proposal_comment' proposal.issue.community_id proposal.id %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="id_comment_{{ proposal.id }}" class="control-label">{% trans "Add comment" %}:</label>
+                                    <textarea class="form-control" rows="2" id="id_comment_{{ proposal.id }}" name="comment"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-oc proposal-comment-modal-btn create-proposal-comment-btn">
+                                        {% trans "Submit" %}
+                                    </button>
+                                </div>
+                            </form>
+                        {% endif %}
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
 

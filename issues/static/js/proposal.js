@@ -137,7 +137,7 @@ $("body").on('click', ".delete-proposal-comment", function (e) {
 
 $('#editProposalCommentModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
-    var comment_id = button.parents('tr').data('id');
+    var comment_id = button.parents('.single-comment').data('id');
     $('#edit-proposal-comment').attr("data-id", comment_id);
     var url = button.data('url');
     $('#edit-proposal-comment').attr('action', url);
@@ -161,7 +161,7 @@ $("body").on('click', "#edit-proposal-comment-submit", function (e) {
         data: postData,
         success: function (data, textStatus, jqXHR) {
             $("#edit-proposal-comment").get(0).reset();
-            $("tr[data-id='" + commentId + "'] .arg-comment").html(data);
+            $(".single-comment[data-id='" + commentId + "'] .arg-comment").html(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             $("#edit-proposal-comment").get(0).reset();
@@ -181,8 +181,8 @@ $(".create-proposal-comment-btn").on('click', function (e) {
         data: postData,
         success: function (data, textStatus, jqXHR) {
             formObj.find("textarea").val('');
-            formObj.hide();
-            formObj.siblings(".proposal-comment-table").find("tbody").append(data);
+            // formObj.hide();
+            formObj.siblings(".proposal-comment-list").append(data).show();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             formObj.find("textarea").val('');

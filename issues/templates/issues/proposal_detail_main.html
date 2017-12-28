@@ -113,31 +113,6 @@
 		    {% endif %}
 		</h5>
 	</div>
-    {% if cperms.issues.comment_proposal and object.issue.voteable %}
-        <div class="proposal-comment">
-            <table class="proposal-comment-table table table-bordered">
-                <tbody>
-                    {% for arg in object.get_comments %}
-                        {% include 'issues/_proposal_comment.html' %}
-                    {% endfor %}
-                </tbody>
-            </table>
-            {% if not object|user_commented:user.id %}
-                <form class="proposal-comment-form" method="post" action="{% url 'create_proposal_comment' object.issue.community_id object.id %}">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="id_comment_{{ object.id }}" class="control-label">{% trans "Add comment" %}:</label>
-                        <textarea class="form-control" rows="2" id="id_comment_{{ object.id }}" name="comment"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button type="button" class="btn btn-oc proposal-comment-modal-btn create-proposal-comment-btn">
-                            {% trans "Submit" %}
-                        </button>
-                    </div>
-                </form>
-            {% endif %}
-        </div>
-    {% endif %}
 </div>
     {% with proposal=object c=proposal.issue.community %}
         {% if proposal.can_straw_vote and cperms.issues.vote and user|member_of:c %}
@@ -155,17 +130,43 @@
             </div>
         {% endif %}
         {% if proposal.can_straw_vote %}
-            <div class="vote_arguments clearfix clear">
-                {% if proposal.has_arguments or user|voted_on:proposal.id %}
+            {% if proposal.has_arguments or user|voted_on:proposal.id %}
+                <div class="vote_arguments clearfix clear">
                     {% include 'issues/_vote_arguments.html' %}
-                {% endif %}
-            </div>
+                </div>
+            {% endif %}
         {% endif %}
         {% if can_board_vote_self and not proposal.decided %}
             {% include 'issues/_board_vote_self.html' %}
         {% endif %}
 	{% endwith %}
-	
+    {% if cperms.issues.viewcomment_proposal and object.issue.voteable %}
+        <div class="proposal-comment clear">
+            <div class="proposal-comment-list{% if not object.get_comments %} hide{% endif %}">
+                {% if object.get_comments %}
+                    <h3>{% trans 'Comments' %}</h3>
+                {% endif %}
+                {% for arg in object.get_comments %}
+                    {% include 'issues/_proposal_comment.html' %}
+                {% endfor %}
+            </div>
+            {% if cperms.issues.comment_proposal %}
+                <form class="proposal-comment-form" method="post" action="{% url 'create_proposal_comment' object.issue.community_id object.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_comment_{{ object.id }}" class="control-label">{% trans "Add comment" %}:</label>
+                        <textarea class="form-control" rows="2" id="id_comment_{{ object.id }}" name="comment"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-oc proposal-comment-modal-btn create-proposal-comment-btn">
+                            {% trans "Submit" %}
+                        </button>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    {% endif %}
+
 	{% if show_board_vote_result %}
 			<h2 class="clear">{% trans "Vote by the" %} {{ object.issue.community.board_name|default:_("Board") }}</h2>
 			{% include 'issues/_board_vote_res.html' %}
@@ -210,7 +211,7 @@
             <div class="modal-body">
                 <form id="edit-proposal-comment" method="post" action="">
                     <div class="form-group">
-                        <label class="control-label">{% trans "Argument" %}</label>
+                        <label for="edit_proposal_comment_text" class="control-label">{% trans "Argument" %}</label>
                         <textarea id="edit_proposal_comment_text" class="form-control" rows="4" name="comment"></textarea>
                     </div>
                 </form>
