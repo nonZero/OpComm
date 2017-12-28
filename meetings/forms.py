@@ -5,7 +5,7 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.utils.html import mark_safe
 from meetings.models import Meeting
-from ocd.formfields import OCSplitDateTime
+from ocd.formfields import OCSplitDateTime, OCSplitDateTimeField
 
 
 class CloseMeetingForm(forms.ModelForm):
@@ -22,6 +22,13 @@ class CloseMeetingForm(forms.ModelForm):
                                        choices=[],
                                        widget=forms.CheckboxSelectMultiple,
                                        required=False)
+    held_at = OCSplitDateTimeField(
+        label=_('Held at'),
+        widget=OCSplitDateTime(
+            date_attrs={'type': 'date', 'class': 'form-control'},
+            time_attrs={'type': 'time', 'class': 'form-control'},
+            attrs={'class': 'form-control'}
+        ))
 
     class Meta:
         model = Meeting
@@ -30,13 +37,13 @@ class CloseMeetingForm(forms.ModelForm):
             'held_at',
         )
 
-        widgets = {
-            'held_at': OCSplitDateTime(
-                date_attrs={'type': 'date', 'class': 'form-control'},
-                time_attrs={'type': 'time', 'class': 'form-control'},
-                attrs={'class': 'form-control'}
-            ),
-        }
+        # widgets = {
+        #     'held_at': OCSplitDateTime(
+        #         date_attrs={'type': 'date', 'class': 'form-control'},
+        #         time_attrs={'type': 'time', 'class': 'form-control'},
+        #         attrs={'class': 'form-control'}
+        #     ),
+        # }
 
     def _get_issue_alert(self, issue):
         if not issue.changed_in_current():

@@ -3,11 +3,19 @@ from django import forms
 from communities.models import Community, SendToOption
 from datetime import datetime, date, time
 from django.utils.translation import ugettext_lazy as _
-from ocd.formfields import HTMLArea, OCSplitDateTime, OCCheckboxSelectMultiple, OCTextInput
+from ocd.formfields import HTMLArea, OCSplitDateTime, OCCheckboxSelectMultiple, OCTextInput, OCSplitDateTimeField
 from haystack.forms import ModelSearchForm
 
 
 class EditUpcomingMeetingForm(forms.ModelForm):
+    upcoming_meeting_scheduled_at = OCSplitDateTimeField(
+        label=_('Scheduled at'),
+        widget=OCSplitDateTime(
+            date_attrs={'type': 'date', 'class': 'form-control'},
+            time_attrs={'type': 'time', 'class': 'form-control'},
+            attrs={'class': 'form-control'}
+        ))
+
     class Meta:
         model = Community
 
@@ -21,18 +29,18 @@ class EditUpcomingMeetingForm(forms.ModelForm):
 
         labels = {
             'upcoming_meeting_title': _('Title'),
-            'upcoming_meeting_scheduled_at': _('Scheduled at'),
+            # 'upcoming_meeting_scheduled_at': _('Scheduled at'),
             # 'upcoming_meeting_location': _('Location'),
             'upcoming_meeting_comments': _('Background'),
         }
 
         widgets = {
             'upcoming_meeting_title': OCTextInput,
-            'upcoming_meeting_scheduled_at': OCSplitDateTime(
-                date_attrs={'type': 'date', 'class': 'form-control'},
-                time_attrs={'type': 'time', 'class': 'form-control'},
-                attrs={'class': 'form-control'}
-            ),
+            # 'upcoming_meeting_scheduled_at': OCSplitDateTime(
+            #     date_attrs={'type': 'date', 'class': 'form-control'},
+            #     time_attrs={'type': 'time', 'class': 'form-control'},
+            #     attrs={'class': 'form-control'}
+            # ),
             # 'upcoming_meeting_location': OCTextInput,
             # 'voting_ends_at': OCSplitDateTime,
             'upcoming_meeting_comments': HTMLArea,

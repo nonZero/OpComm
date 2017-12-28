@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Open Community\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-28 17:46+0200\n"
+"POT-Creation-Date: 2017-12-28 20:08+0200\n"
 "PO-Revision-Date: 2014-10-26 11:04+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,11 +26,11 @@ msgstr "שלח אל"
 msgid "The selected issues will be archived"
 msgstr "הנושאים המסומנים יועברו לארכיון"
 
-#: forms.py:43
+#: forms.py:50
 msgid "Issue was not modified in this meeting"
 msgstr "לא התבצעו שינויים בנושא זה במהלך הפגישה"
 
-#: forms.py:46
+#: forms.py:53
 msgid "Undecided proposals"
 msgstr "התייחסויות ללא החלטה"
 
@@ -103,8 +103,7 @@ msgstr "סיכום הפגישה"
 msgid "Agenda items"
 msgstr "סדר יום"
 
-#: models.py:88 templates/meetings/meeting_detail.html:67
-#: templates/meetings/meeting_detail.html:130
+#: models.py:88 templates/meetings/meeting_detail.html:133
 msgid "Participants"
 msgstr "משתתפים"
 
@@ -184,7 +183,7 @@ msgid "Print details"
 msgstr "הדפס פירוט"
 
 #: templates/meetings/meeting_close.html:50
-#: templates/meetings/meeting_detail.html:160
+#: templates/meetings/meeting_detail.html:163
 msgid "Print protocol"
 msgstr "הדפסת פרוטוקול הפגישה"
 
@@ -200,23 +199,23 @@ msgstr "פגישה קרובה"
 msgid "Not set yet"
 msgstr "טרם נקבע"
 
-#: templates/meetings/meeting_detail.html:70
+#: templates/meetings/meeting_detail.html:73
 msgid "Protocol"
 msgstr "פרוטוקול"
 
-#: templates/meetings/meeting_detail.html:100
+#: templates/meetings/meeting_detail.html:103
 msgid "Assigned to"
 msgstr "אחראי"
 
-#: templates/meetings/meeting_detail.html:103
+#: templates/meetings/meeting_detail.html:106
 msgid "Due by"
 msgstr "יעד"
 
-#: templates/meetings/meeting_detail.html:156
+#: templates/meetings/meeting_detail.html:159
 msgid "Meeting protocol"
 msgstr "פרוטוקול הפגישה"
 
-#: templates/meetings/meeting_detail.html:165
+#: templates/meetings/meeting_detail.html:168
 msgid "Close"
 msgstr "סגור"
 

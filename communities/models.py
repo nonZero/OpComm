@@ -415,7 +415,7 @@ class Community(UIDMixin):
                                                   default_group_name=mm.default_group_name if mm else None)
 
             self._register_absents(m, meeting_participants)
-            self.upcoming_meeting_participants = []
+            self.upcoming_meeting_participants.set([])
 
         return m
 

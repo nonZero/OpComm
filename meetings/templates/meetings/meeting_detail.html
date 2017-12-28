@@ -62,9 +62,11 @@ id="meeting-detail"
             </div>
             {% endif %}
             {% endcomment %}
+            {% comment %}
             <div class="pull-left">
                 <h5><i class="fa fa-users"></i> <a data-toggle="modal" href="#participants">{% trans "Participants" %}: {{total_participants}}</a></h5>
             </div>
+            {% endcomment %}
             <div class="pull-left">
                 <h5><i class="fa fa-list-alt"></i> <a data-toggle="modal" href="#meetingProtocol">{% trans "Protocol" %}</a></h5>
             </div>

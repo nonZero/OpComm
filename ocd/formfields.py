@@ -19,6 +19,10 @@ class OCSplitDateTime(forms.SplitDateTimeWidget):
     template_name = 'ocforms/widgets/splitdatetime.html'
 
 
+class OCSplitDateTimeField(forms.SplitDateTimeField):
+    widget = OCSplitDateTime
+
+
 class OCCheckboxSelectMultiple(forms.SelectMultiple):
     template_name = 'floppyforms/oc_checkbox_select.html'
 

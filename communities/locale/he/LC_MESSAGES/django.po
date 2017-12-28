@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Open Community\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-28 17:46+0200\n"
+"POT-Creation-Date: 2017-12-28 20:08+0200\n"
 "PO-Revision-Date: 2017-12-14 12:24+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
@@ -18,20 +18,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
-#: forms.py:23
+#: forms.py:31
 msgid "Title"
 msgstr "כותרת"
 
-#: forms.py:24 templates/emails/_protocol.html:38
-#: templates/emails/agenda.html:56
-msgid "Scheduled at"
-msgstr "מועד"
-
-#: forms.py:26
+#: forms.py:34
 msgid "Background"
 msgstr "רקע"
 
-#: forms.py:73
+#: forms.py:81
 msgid "Send to"
 msgstr "נמענים"
 
@@ -412,13 +407,13 @@ msgid "Results"
 msgstr "תוצאות"
 
 #: templates/communities/community_search.html:33
-#: templates/emails/_protocol.html:160 templates/emails/agenda.html:133
+#: templates/emails/_protocol.html:171 templates/emails/agenda.html:133
 #: templates/search/search.html:48
 msgid "Assigned to"
 msgstr "אחראי"
 
 #: templates/communities/community_search.html:36
-#: templates/emails/_protocol.html:164 templates/emails/agenda.html:137
+#: templates/emails/_protocol.html:175 templates/emails/agenda.html:137
 #: templates/search/search.html:51
 msgid "Due by"
 msgstr "יעד"
@@ -683,7 +678,6 @@ msgstr "עריכה"
 
 #: templates/communities/participants_form.html:29
 #: templates/communities/participants_form.html:172
-#: templates/emails/_protocol.html:70
 msgid "Guests"
 msgstr "אורחים"
 
@@ -825,7 +819,7 @@ msgstr "הקלד כותרת עבור הנושא החדש"
 msgid "Comments"
 msgstr "הערות"
 
-#: templates/communities/upcoming.html:220 templates/emails/_protocol.html:46
+#: templates/communities/upcoming.html:220 templates/emails/_protocol.html:48
 #: templates/emails/protocol.html:3 templates/emails/protocol.txt:1
 #: templates/emails/protocol_title.txt:4
 msgid "Summary"
@@ -864,61 +858,53 @@ msgstr "טרם פורסם סדר היום לפגישה הקרובה"
 msgid "Edit the agenda"
 msgstr "עריכת סדר יום"
 
-#: templates/emails/_protocol.html:30 templates/emails/agenda.html:46
+#: templates/emails/_protocol.html:32 templates/emails/agenda.html:46
 #: templates/emails/agenda.txt:3 templates/emails/protocol.txt:3
 #: templates/emails/protocol_draft.txt:3
 msgid "View online"
 msgstr "לצפיה באתר"
 
-#: templates/emails/_protocol.html:35 templates/emails/agenda.html:53
+#: templates/emails/_protocol.html:37 templates/emails/agenda.html:53
 msgid "Meeting details"
 msgstr "פרטי הפגישה"
 
-#: templates/emails/_protocol.html:39 templates/emails/agenda.html:60
+#: templates/emails/_protocol.html:40 templates/emails/agenda.html:56
+msgid "Scheduled at"
+msgstr "מועד"
+
+#: templates/emails/_protocol.html:41 templates/emails/agenda.html:60
 msgid "Not set yet"
 msgstr "טרם נקבע"
 
-#: templates/emails/_protocol.html:42 templates/emails/agenda.html:59
+#: templates/emails/_protocol.html:44 templates/emails/agenda.html:59
 msgid "Location"
 msgstr "מיקום"
 
-#: templates/emails/_protocol.html:55
-msgid "Participants"
-msgstr "משתתפים"
-
-#: templates/emails/_protocol.html:65
-msgid "from "
-msgstr "מתוך "
-
-#: templates/emails/_protocol.html:66
-msgid " members of"
-msgstr "חברי"
-
-#: templates/emails/_protocol.html:90
+#: templates/emails/_protocol.html:95
 msgid "Issues & Decisions"
 msgstr "נושאים והתייחסות"
 
-#: templates/emails/_protocol.html:102 templates/emails/_protocol.html:105
-#: templates/emails/_protocol.html:153 templates/emails/_protocol.html:156
-#: templates/emails/_protocol.html:184 templates/emails/_protocol.html:187
+#: templates/emails/_protocol.html:107 templates/emails/_protocol.html:111
+#: templates/emails/_protocol.html:162 templates/emails/_protocol.html:167
+#: templates/emails/_protocol.html:196 templates/emails/_protocol.html:201
 #: templates/emails/agenda.html:85 templates/emails/agenda.html:125
 #: templates/emails/agenda.html:128
 msgid "Confidential"
 msgstr "חסוי"
 
-#: templates/emails/_protocol.html:127 templates/emails/agenda.html:102
+#: templates/emails/_protocol.html:134 templates/emails/agenda.html:102
 msgid "Related files"
 msgstr "קבצים קשורים"
 
-#: templates/emails/_protocol.html:143
+#: templates/emails/_protocol.html:151
 msgid "Accepted proposals"
 msgstr "התייחסויות שהתקבלו"
 
-#: templates/emails/_protocol.html:177
+#: templates/emails/_protocol.html:188
 msgid "Rejected proposals"
 msgstr "התייחסויות שנדחו"
 
-#: templates/emails/_protocol.html:206 templates/emails/agenda.html:162
+#: templates/emails/_protocol.html:220 templates/emails/agenda.html:162
 msgid "Unsubscribe from mailing list"
 msgstr "הסר מרשימת תפוצה"
 
@@ -1127,6 +1113,15 @@ msgstr "מספר עמוד צריך להיות 1 או יותר."
 #: views.py:358
 msgid "No such page!"
 msgstr "דף לא קיים!"
+
+#~ msgid "Participants"
+#~ msgstr "משתתפים"
+
+#~ msgid "from "
+#~ msgstr "מתוך "
+
+#~ msgid " members of"
+#~ msgstr "חברי"
 
 #~ msgid "The board"
 #~ msgstr "לועד בלבד"

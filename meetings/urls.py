@@ -6,7 +6,7 @@ urlpatterns = [
 
     path('', views.MeetingList.as_view(), name="history"),
 
-    path('<int:id>/', views.MeetingDetailView.as_view(), name="meeting"),
-    path('<int:id>/protocol/', views.MeetingProtocolView.as_view(),
+    path('<int:pk>/', views.MeetingDetailView.as_view(), name="meeting"),
+    path('<int:pk>/protocol/', views.MeetingProtocolView.as_view(),
          name="meeting_protocol"),
 ]
