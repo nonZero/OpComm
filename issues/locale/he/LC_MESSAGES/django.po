@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Open Community\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-22 10:21+0200\n"
+"POT-Creation-Date: 2017-12-28 17:46+0200\n"
 "PO-Revision-Date: 2017-12-22 10:22+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
@@ -18,13 +18,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
-#: admin.py:66 models.py:478 templates/issues/_issue_main.html:78
-#: templates/issues/_issue_main.html:85
-#: templates/issues/proposal_detail.html:69
+#: admin.py:66 models.py:478 templates/issues/_issue_main.html:90
+#: templates/issues/_issue_main.html:97
+#: templates/issues/proposal_detail.html:69 templatetags/voting_tags.py:42
 msgid "Proposals"
 msgstr "התייחסויות"
 
-#: admin.py:70
+#: admin.py:70 templates/issues/_issue_main.html:75
+#: templates/issues/_issue_main.html:142
+#: templates/issues/proposal_detail_main.html:148
 msgid "Comments"
 msgstr "הערות"
 
@@ -60,7 +62,7 @@ msgstr "צור חדש"
 msgid "Save"
 msgstr "שמירה"
 
-#: forms.py:172 forms.py:194 forms.py:205 templates/issues/_issue_main.html:95
+#: forms.py:172 forms.py:194 forms.py:205 templates/issues/_issue_main.html:107
 msgid "Add"
 msgstr "הוספה"
 
@@ -230,7 +232,7 @@ msgstr "סוג"
 msgid "Details"
 msgstr "פירוט"
 
-#: models.py:458 templates/issues/_proposal.html:19
+#: models.py:458 templates/issues/_proposal.html:18
 #: templates/issues/proposal_detail_main.html:95
 msgid "Assigned to"
 msgstr "אחראי"
@@ -239,7 +241,7 @@ msgstr "אחראי"
 msgid "Assigned to user"
 msgstr "אחראי"
 
-#: models.py:465 templates/issues/_proposal.html:22
+#: models.py:465 templates/issues/_proposal.html:21
 #: templates/issues/proposal_detail_main.html:101
 msgid "Due by"
 msgstr "יעד"
@@ -265,7 +267,7 @@ msgstr "חברי קהילה"
 msgid "Tags"
 msgstr "תגיות"
 
-#: models.py:477
+#: models.py:477 templatetags/voting_tags.py:40
 msgid "Proposal"
 msgstr "התייחסות"
 
@@ -277,9 +279,9 @@ msgstr "תגובה להתייחסות"
 msgid "Proposal comments"
 msgstr "תגובות להתייחסות"
 
-#: models.py:721 templates/issues/_issue_main.html:202
+#: models.py:721 templates/issues/_issue_main.html:240
 #: templates/issues/_vote_arguments.html:99
-#: templates/issues/proposal_detail_main.html:214
+#: templates/issues/proposal_detail_main.html:215
 msgid "Argument"
 msgstr "טיעון"
 
@@ -351,17 +353,17 @@ msgid "You won't be able to change your vote after adding an argument."
 msgstr "לאחר הוספת טיעון לא ניתן לשנות את בחירתך."
 
 #: templates/issues/_argument_action_modal.html:28
-#: templates/issues/_issue_main.html:210
+#: templates/issues/_issue_main.html:248
 #: templates/issues/_vote_arguments.html:107
 #: templates/issues/issueattachment_form.html:22
-#: templates/issues/proposal_detail_main.html:222
+#: templates/issues/proposal_detail_main.html:223
 msgid "Cancel"
 msgstr "ביטול"
 
 #: templates/issues/_argument_action_modal.html:33
-#: templates/issues/_issue_main.html:215
+#: templates/issues/_issue_main.html:253
 #: templates/issues/_vote_arguments.html:112
-#: templates/issues/proposal_detail_main.html:227
+#: templates/issues/proposal_detail_main.html:228
 msgid "Confirm"
 msgstr "אישור"
 
@@ -410,40 +412,55 @@ msgstr "צרף קובץ"
 msgid "Decisions"
 msgstr "התייחסויות"
 
-#: templates/issues/_issue_main.html:92
+#: templates/issues/_issue_main.html:104
 msgid "Type the new proposal title"
 msgstr "הקלד כותרת עבור התייחסות החדשה"
 
-#: templates/issues/_issue_main.html:131
+#: templates/issues/_issue_main.html:152
+#: templates/issues/proposal_detail_main.html:158
+msgid "Add comment"
+msgstr "הוסף תגובה"
+
+#: templates/issues/_issue_main.html:157
+#: templates/issues/_vote_arguments.html:41
+#: templates/issues/_vote_arguments.html:77 templates/issues/issue_list.html:70
+#: templates/issues/issue_list.html:150
+#: templates/issues/proposal_detail_main.html:163
+msgid "Submit"
+msgstr "שלח"
+
+#: templates/issues/_issue_main.html:169
 msgid "Add a proposal"
 msgstr "הוסף התייחסות"
 
-#: templates/issues/_issue_main.html:137
+#: templates/issues/_issue_main.html:175
 msgid "Issue discussion summary"
 msgstr "עיקרי הדיון בנושא"
 
-#: templates/issues/_issue_main.html:160
+#: templates/issues/_issue_main.html:198
 msgid "Save and go to next issue"
 msgstr "שמור ועבור לנושא הבא"
 
-#: templates/issues/_issue_main.html:197
-#: templates/issues/proposal_detail_main.html:209
+#: templates/issues/_issue_main.html:235
+#: templates/issues/proposal_detail_main.html:210
 msgid "Edit comment"
 msgstr "ערוך תגובה"
 
 #: templates/issues/_issue_title.html:9
+#: templates/issues/_proposal_comment.html:10
 #: templates/issues/proposal_detail_main.html:66
 msgid "Edit"
 msgstr "עריכה"
 
 #: templates/issues/_issue_title.html:10
+#: templates/issues/_proposal_comment.html:13
 #: templates/issues/issue_confirm_delete.html:5
 #: templates/issues/proposal_confirm_delete.html:5
 #: templates/issues/proposal_detail_main.html:68
 msgid "Delete"
 msgstr "מחיקה"
 
-#: templates/issues/_issue_title.html:17
+#: templates/issues/_issue_title.html:17 templates/issues/_proposal.html:12
 #: templates/issues/proposal_detail_main.html:89
 msgid "By:"
 msgstr "מאת:"
@@ -462,18 +479,6 @@ msgstr "הוסף טיעון"
 msgctxt "rule creation date"
 msgid "Date"
 msgstr "תאריך"
-
-#: templates/issues/_proposal.html:59
-#: templates/issues/proposal_detail_main.html:130
-msgid "Add comment"
-msgstr "הוסף תגובה"
-
-#: templates/issues/_proposal.html:64 templates/issues/_vote_arguments.html:41
-#: templates/issues/_vote_arguments.html:77 templates/issues/issue_list.html:70
-#: templates/issues/issue_list.html:150
-#: templates/issues/proposal_detail_main.html:135
-msgid "Submit"
-msgstr "שלח"
 
 #: templates/issues/_proposal_vote_results.html:17
 msgid "Last vote"
@@ -577,11 +582,6 @@ msgstr "כן"
 #: templates/issues/issue_list.html:34
 msgid "New issue"
 msgstr "נושא חדש"
-
-#: templates/issues/issue_create_form.html:19
-#: templates/issues/proposal_form.html:20
-msgid "New proposal"
-msgstr "התייחסות חדשה"
 
 #: templates/issues/issue_detail.html:26
 #: templates/issues/proposal_detail.html:39
@@ -740,35 +740,39 @@ msgstr "בטל השלמה"
 msgid "Complete task"
 msgstr "השלם משימה"
 
-#: templates/issues/proposal_detail_main.html:149
+#: templates/issues/proposal_detail_main.html:124
 msgid "Vote ended"
 msgstr "הצבעה נסגרה"
 
-#: templates/issues/proposal_detail_main.html:154
+#: templates/issues/proposal_detail_main.html:129
 msgid "Straw vote result"
 msgstr "תוצאות הצבעת שבשבת"
 
-#: templates/issues/proposal_detail_main.html:171
-#: templates/issues/proposal_detail_main.html:178
+#: templates/issues/proposal_detail_main.html:172
+#: templates/issues/proposal_detail_main.html:179
 msgid "Vote by the"
 msgstr "הצבעה על ידי"
 
-#: templates/issues/proposal_detail_main.html:171
-#: templates/issues/proposal_detail_main.html:178
+#: templates/issues/proposal_detail_main.html:172
+#: templates/issues/proposal_detail_main.html:179
 msgid "Board"
 msgstr "ועד"
 
-#: templates/issues/proposal_detail_main.html:188
+#: templates/issues/proposal_detail_main.html:189
 msgid "Accept proposal"
 msgstr "קבל את ההתייחסות"
 
-#: templates/issues/proposal_detail_main.html:193
+#: templates/issues/proposal_detail_main.html:194
 msgid "Reject proposal"
 msgstr "דחה התייחסות"
 
 #: templates/issues/proposal_form.html:18
 msgid "Edit proposal"
 msgstr "עריכת התייחסות"
+
+#: templates/issues/proposal_form.html:20
+msgid "New proposal"
+msgstr "התייחסות חדשה"
 
 #: templates/issues/proposal_form.html:132
 msgid "Are you sure you want to remove the proposal confidentiality"
