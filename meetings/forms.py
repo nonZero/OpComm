@@ -31,7 +31,11 @@ class CloseMeetingForm(forms.ModelForm):
         )
 
         widgets = {
-            'held_at': OCSplitDateTime,
+            'held_at': OCSplitDateTime(
+                date_attrs={'type': 'date', 'class': 'form-control'},
+                time_attrs={'type': 'time', 'class': 'form-control'},
+                attrs={'class': 'form-control'}
+            ),
         }
 
     def _get_issue_alert(self, issue):

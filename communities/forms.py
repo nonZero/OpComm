@@ -28,7 +28,11 @@ class EditUpcomingMeetingForm(forms.ModelForm):
 
         widgets = {
             'upcoming_meeting_title': OCTextInput,
-            'upcoming_meeting_scheduled_at': OCSplitDateTime,
+            'upcoming_meeting_scheduled_at': OCSplitDateTime(
+                date_attrs={'type': 'date', 'class': 'form-control'},
+                time_attrs={'type': 'time', 'class': 'form-control'},
+                attrs={'class': 'form-control'}
+            ),
             # 'upcoming_meeting_location': OCTextInput,
             # 'voting_ends_at': OCSplitDateTime,
             'upcoming_meeting_comments': HTMLArea,
