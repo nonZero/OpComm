@@ -29,7 +29,7 @@ class ProposalQuerySetMixin(ActiveQuerySetMixin):
 
     def open(self):
         return self.filter(active=True,
-                           decided_at_meeting_id=None).order_by("created_at")
+                           decided_at_meeting_id=None).order_by("-created_at")
 
     def closed(self):
         return self.filter(active=True).exclude(decided_at_meeting_id=None)
@@ -514,7 +514,7 @@ class Proposal(UIDMixin, ConfidentialMixin):
                 self.issue.community.straw_vote_ended)
 
     def get_comments(self):
-        return self.proposal_comments.all()
+        return self.proposal_comments.all().order_by('-created_at')
 
     def get_straw_results(self, meeting_id=None):
         """ get straw voting results registered for the given meeting """

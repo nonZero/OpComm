@@ -759,7 +759,7 @@ msgstr "התחל עדכון"
 #: templates/communities/start_meeting.html:19
 #: templates/communities/upcoming.html:138
 msgid "Start meeting"
-msgstr "התחל פגישה"
+msgstr "סגירת סדר היום להתייחסויות"
 
 #: templates/communities/upcoming.html:8
 msgid "Upcoming update"

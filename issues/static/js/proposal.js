@@ -180,9 +180,10 @@ $(".create-proposal-comment-btn").on('click', function (e) {
         type: "POST",
         data: postData,
         success: function (data, textStatus, jqXHR) {
-            formObj.find("textarea").val('');
+            location.reload(true);
+            // formObj.find("textarea").val('');
             // formObj.hide();
-            formObj.siblings(".proposal-comment-list").append(data).show();
+            // formObj.siblings(".proposal-comment-list").append(data).show();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             formObj.find("textarea").val('');
