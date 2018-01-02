@@ -74,17 +74,17 @@
 		{% endif %}
 		<div class="pull-left">
 			<h1>
-			{% if object.upcoming_meeting_title and cperms.communities.viewupcoming_community %}
-				{% if cperms.community.editagenda_community or object.upcoming_meeting_is_published %}
-					{{object.upcoming_meeting_title}}
-				{% endif %}
-			{% else %}
-                {% if LANGUAGE_CODE == 'he' and community.no_meetings_community %}
-                {% trans "Next update" %}
+                {% if object.upcoming_meeting_title and cperms.communities.viewupcoming_community %}
+                    {% if cperms.community.editagenda_community or object.upcoming_meeting_is_published %}
+                        {{object.upcoming_meeting_title}}
+                    {% endif %}
                 {% else %}
-                {% trans "Upcoming meeting" %}
+                    {% if LANGUAGE_CODE == 'he' and community.no_meetings_community %}
+                    {% trans "Next update" %}
+                    {% else %}
+                    {% trans "Upcoming meeting" %}
+                    {% endif %}
                 {% endif %}
-			{% endif %}
 			</h1>
 		</div>
 	</div>

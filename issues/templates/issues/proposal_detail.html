@@ -11,6 +11,38 @@ id="proposal-detail"
 	</title>
 {% endblock %}
 
+{% block breadcrumb %}
+    <li>
+        {% if meeting_context %}
+            <a href="{{meeting_context.get_absolute_url}}">
+                {% if meeting_context.title %}
+                    {{ meeting_context.title }}
+                {% endif %}&nbsp;
+                {% if meeting_context.held_at %}
+                    {% if meeting_context.title %} - {% endif %}
+                    {{ meeting_context.held_at|date:"j F Y" }}
+                {% endif %}
+            </a>
+        {% else %}
+            <a href="{{object.issue.community.get_upcoming_absolute_url}}">
+                {% if LANGUAGE_CODE == 'he' and community.no_meetings_community %}
+                {{object.issue.community.upcoming_meeting_title|default:_("Next update")}}
+                {% else %}
+                {{object.issue.community.upcoming_meeting_title|default:_("Upcoming Meeting")}}
+                {% endif %}
+                {% if object.issue.community.upcoming_meeting_scheduled_at %} / {% endif %}{{object.issue.community.upcoming_meeting_scheduled_at|date:"j F Y"}}
+            </a>
+        {% endif %}
+    </li>
+    <li>
+        <a href="{{object.issue.get_absolute_url}}?m_id={{meeting_context.id}}{{issue_frame|yesno:'&s=1,'}}">
+            {{ object.issue.title }}
+        </a>
+    </li>
+    <li class="active">
+        {{ object.title }}
+    </li>
+{% endblock %}
 {% block page_header %}
     {% if issue_frame %}
     <span class="visible-xs">

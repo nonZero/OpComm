@@ -13,6 +13,31 @@ id="issue-detail"
 <!-- {% trans "Issue" %} -->
 {% endblock %}
 
+{% block breadcrumb %}
+    <li>
+        {% if meeting %}
+            <a href="{{meeting.get_absolute_url}}">
+                {% if meeting.title %}
+                    {{ meeting.title }} -&nbsp;
+                {% endif %}
+                {{ meeting.held_at|date:"j F Y" }}
+            </a>
+        {% else %}
+            <a href="{{object.community.get_upcoming_absolute_url}}">
+                {% if LANGUAGE_CODE == 'he' and community.no_meetings_community %}
+                    {{object.community.upcoming_meeting_title|default:_("Next update")}}
+                {% else %}
+                    {{object.community.upcoming_meeting_title|default:_("Upcoming Meeting")}}
+                {% endif %}
+                {% if object.community.upcoming_meeting_scheduled_at %} - {{object.community.upcoming_meeting_scheduled_at|date:"j F Y"}}{% endif %}
+            </a>
+        {% endif %}
+    </li>
+    <li class="active">
+        {{ object.title }}
+    </li>
+{% endblock %}
+
 {% block content %}
 {% if not all_issues %}
 <div class="meeting_header">

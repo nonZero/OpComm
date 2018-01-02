@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Open Community\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-28 20:08+0200\n"
-"PO-Revision-Date: 2017-12-22 10:22+0200\n"
+"POT-Creation-Date: 2018-01-02 09:23+0200\n"
+"PO-Revision-Date: 2018-01-02 09:37+0200\n"
 "Last-Translator: Yaniv Mirel <yanivmirel@gmail.com>\n"
 "Language-Team: \n"
 "Language: he\n"
@@ -28,7 +28,7 @@ msgstr "התייחסויות"
 #: templates/issues/_issue_main.html:142
 #: templates/issues/proposal_detail_main.html:148
 msgid "Comments"
-msgstr "הערות"
+msgstr "תגובות"
 
 #: admin.py:74 templates/issues/issue_detail.html:90
 #: templates/issues/issue_detail_issue_list.html:31
@@ -162,7 +162,7 @@ msgstr "הערה על נושא"
 
 #: models.py:227
 msgid "Issue comments"
-msgstr "הערות על נושאים"
+msgstr "תגובות על נושאים"
 
 #: models.py:298
 msgid "File"
@@ -281,7 +281,7 @@ msgstr "תגובות להתייחסות"
 
 #: models.py:721 templates/issues/_issue_main.html:240
 #: templates/issues/_vote_arguments.html:99
-#: templates/issues/proposal_detail_main.html:215
+#: templates/issues/proposal_detail_main.html:218
 msgid "Argument"
 msgstr "טיעון"
 
@@ -356,14 +356,14 @@ msgstr "לאחר הוספת טיעון לא ניתן לשנות את בחירת�
 #: templates/issues/_issue_main.html:248
 #: templates/issues/_vote_arguments.html:107
 #: templates/issues/issueattachment_form.html:22
-#: templates/issues/proposal_detail_main.html:223
+#: templates/issues/proposal_detail_main.html:226
 msgid "Cancel"
 msgstr "ביטול"
 
 #: templates/issues/_argument_action_modal.html:33
 #: templates/issues/_issue_main.html:253
 #: templates/issues/_vote_arguments.html:112
-#: templates/issues/proposal_detail_main.html:228
+#: templates/issues/proposal_detail_main.html:231
 msgid "Confirm"
 msgstr "אישור"
 
@@ -414,12 +414,12 @@ msgstr "התייחסויות"
 
 #: templates/issues/_issue_main.html:104
 msgid "Type the new proposal title"
-msgstr "הקלד כותרת עבור התייחסות החדשה"
+msgstr "כותרת ההתייחסות"
 
 #: templates/issues/_issue_main.html:152
 #: templates/issues/proposal_detail_main.html:158
 msgid "Add comment"
-msgstr "הוסף תגובה"
+msgstr "תגובה חדשה"
 
 #: templates/issues/_issue_main.html:157
 #: templates/issues/_vote_arguments.html:41
@@ -427,11 +427,11 @@ msgstr "הוסף תגובה"
 #: templates/issues/issue_list.html:150
 #: templates/issues/proposal_detail_main.html:163
 msgid "Submit"
-msgstr "שלח"
+msgstr "שליחה"
 
 #: templates/issues/_issue_main.html:169
 msgid "Add a proposal"
-msgstr "הוסף התייחסות"
+msgstr "התייחסות חדשה"
 
 #: templates/issues/_issue_main.html:175
 msgid "Issue discussion summary"
@@ -442,7 +442,7 @@ msgid "Save and go to next issue"
 msgstr "שמור ועבור לנושא הבא"
 
 #: templates/issues/_issue_main.html:235
-#: templates/issues/proposal_detail_main.html:210
+#: templates/issues/proposal_detail_main.html:213
 msgid "Edit comment"
 msgstr "ערוך תגובה"
 
@@ -681,7 +681,7 @@ msgstr "מחק קובץ"
 
 #: templates/issues/issueattachment_form.html:9
 msgid "Add attachment"
-msgstr "צרף קובץ"
+msgstr "צירוף קובץ"
 
 #: templates/issues/issueattachment_form.html:23
 msgid "Attach"
@@ -749,20 +749,18 @@ msgid "Straw vote result"
 msgstr "תוצאות הצבעת שבשבת"
 
 #: templates/issues/proposal_detail_main.html:172
-#: templates/issues/proposal_detail_main.html:179
 msgid "Vote by the"
 msgstr "הצבעה על ידי"
 
 #: templates/issues/proposal_detail_main.html:172
-#: templates/issues/proposal_detail_main.html:179
 msgid "Board"
 msgstr "ועד"
 
-#: templates/issues/proposal_detail_main.html:189
+#: templates/issues/proposal_detail_main.html:192
 msgid "Accept proposal"
 msgstr "קבל את ההתייחסות"
 
-#: templates/issues/proposal_detail_main.html:194
+#: templates/issues/proposal_detail_main.html:197
 msgid "Reject proposal"
 msgstr "דחה התייחסות"
 

@@ -134,7 +134,7 @@
 		            </div>
                 {% endcomment %}
         		{% endif %}
-                {% if cperms.issues.viewcomment_proposal and proposal.issue.voteable %}
+                {% if cperms.issues.viewcomment_proposal %}
                     <div class="proposal-comment clear">
                         <div class="proposal-comment-list{% if not proposal.get_comments %} hide{% endif %}">
                             {% if proposal.get_comments %}

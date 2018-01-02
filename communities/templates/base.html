@@ -25,6 +25,9 @@
         <div class="notmodal">
             {% include '_navbar.html' %}
             <div class="container main-page">
+                <ol class="breadcrumb">
+                    {% block breadcrumb %}{% endblock %}
+                </ol>
                 <div class="row">
                     {% if messages %}
 					<div class="col-xs-12">
