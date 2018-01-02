@@ -1,15 +1,16 @@
 """Services for sending notifications to community members."""
-import logging
 import datetime
+import logging
 from itertools import chain
+
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils import translation
-import django_rq
+
 from communities.models import SendToOption
-from users.default_roles import DefaultGroups
 from issues.models import IssueStatus
+from users.default_roles import DefaultGroups
 
 logger = logging.getLogger(__name__)
 
@@ -54,8 +55,8 @@ def construct_mock_users(email_list, type):
     return users
 
 
-def _base_send_mail(community, notification_type, sender, send_to, data=None,
-                    base_url=None, with_guests=False, language=None):
+def send_mail(community, notification_type, sender, send_to, data=None,
+              base_url=None, with_guests=False, language=None):
     """Sends mail to community members, and applies object access control.
 
     The type of email being sent is detected from notification_type.
@@ -78,7 +79,8 @@ def _base_send_mail(community, notification_type, sender, send_to, data=None,
         r = [m.user for m in community.memberships.board() if m.user.opt_in]
 
     elif send_to == SendToOption.ONLY_ATTENDEES:
-        r = [user for user in community.upcoming_meeting_participants.all() if m.user.opt_in]
+        r = [user for user in community.upcoming_meeting_participants.all() if
+             m.user.opt_in]
 
     else:
         r = []
@@ -160,7 +162,8 @@ def _base_send_mail(community, notification_type, sender, send_to, data=None,
             for issue in issues:
                 proposals = issue.proposals.object_access_control(
                     user=recipient, community=community)
-                draft_agenda_payload.append({'issue': issue, 'proposals': proposals})
+                draft_agenda_payload.append(
+                    {'issue': issue, 'proposals': proposals})
 
             agenda_items = community.draft_agenda(draft_agenda_payload)
             item_attachments = [item['issue'].current_attachments() for
@@ -197,7 +200,8 @@ def _base_send_mail(community, notification_type, sender, send_to, data=None,
             can_straw_vote = community.upcoming_proposals_any(
                 {'is_open': True}, user=recipient, community=community) \
                              and community.upcoming_meeting_is_published
-            upcoming_issues = community.upcoming_issues(user=recipient, community=community)
+            upcoming_issues = community.upcoming_issues(user=recipient,
+                                                        community=community)
             issues = []
 
             for i in upcoming_issues:
@@ -215,8 +219,10 @@ def _base_send_mail(community, notification_type, sender, send_to, data=None,
             notification_type), d)
 
         msg = {
-            'subject': render_to_string("emails/{0}_title.txt".format(notification_type), d).strip(),
-            'body': render_to_string("emails/{0}.txt".format(notification_type), d),
+            'subject': render_to_string(
+                "emails/{0}_title.txt".format(notification_type), d).strip(),
+            'body': render_to_string(
+                "emails/{0}.txt".format(notification_type), d),
             'from_email': from_email,
             'to': [recipient.email],
         }
@@ -227,16 +233,3 @@ def _base_send_mail(community, notification_type, sender, send_to, data=None,
         message.send()
 
     return len(recipients)
-
-
-def _async_send_mail(*args, **kwargs):
-    django_rq.get_queue(settings.QUEUE_NAME).enqueue(
-        _base_send_mail, *args, description=u"Send mail",
-        language=settings.LANGUAGE_CODE, **kwargs)
-    return True
-
-
-if not settings.OPENCOMMITTEE_ASYNC_NOTIFICATIONS:
-    send_mail = _base_send_mail
-else:
-    send_mail = _async_send_mail
